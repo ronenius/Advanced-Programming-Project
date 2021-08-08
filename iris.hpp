@@ -8,4 +8,5 @@ public:
     static const char *SETOSA;
     static const char *VIRGINICA;
     static const char *VERSICOLOR;
+    static const char *UNDEFINED;
 };
