@@ -9,4 +9,7 @@ public:
     static const char *VIRGINICA;
     static const char *VERSICOLOR;
     static const char *UNDEFINED;
+    char *getName();
+    void setName();
+    double *getProperties();
 };
