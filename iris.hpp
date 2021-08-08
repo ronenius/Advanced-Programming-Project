@@ -1,3 +1,5 @@
+#ifndef irishpp
+#define irishpp
 #include <string>
 #include <vector>
 #include <cmath>
@@ -18,3 +20,4 @@ public:
     std::vector<double> getProperties();
     double getDistance(iris other);
 };
+#endif
