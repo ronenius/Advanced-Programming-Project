@@ -13,7 +13,7 @@ public:
     static std::string UNDEFINED;
     iris(std::string name, std::vector<double> properties);
     std::string getName();
-    void setName();
+    void setName(std::string name);
     std::vector<double> getProperties();
     double getDistance(iris other);
 };
