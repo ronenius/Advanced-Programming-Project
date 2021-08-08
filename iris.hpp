@@ -1,15 +1,19 @@
+#include <string>
+#include <vector>
 class iris
 {
 private:
-    char *name;
-    double properties[4];
+    std::string name;
+    std::vector<double> properties;
 
 public:
-    static const char *SETOSA;
-    static const char *VIRGINICA;
-    static const char *VERSICOLOR;
-    static const char *UNDEFINED;
-    char *getName();
+    static std::string SETOSA;
+    static std::string VIRGINICA;
+    static std::string VERSICOLOR;
+    static std::string UNDEFINED;
+    iris(std::string name, std::vector<double> properties);
+    std::string getName();
     void setName();
-    double *getProperties();
+    std::vector<double> getProperties();
+    double getDistance(iris other);
 };

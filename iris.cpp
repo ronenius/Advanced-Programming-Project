@@ -1,5 +1,6 @@
 #include "iris.hpp"
-const char *iris::SETOSA = "setosa";
-const char *iris::VIRGINICA = "virginica";
-const char *iris::VERSICOLOR = "versicolor";
-const char *iris::UNDEFINED = "undefined";
+std::string iris::SETOSA = "setosa";
+std::string iris::VIRGINICA = "virginica";
+std::string iris::VERSICOLOR = "versicolor";
+std::string iris::UNDEFINED = "undefined";
+iris::iris(std::string name, std::vector<double> properties) : name(name), properties(properties){};
