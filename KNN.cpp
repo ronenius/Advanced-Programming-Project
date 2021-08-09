@@ -5,7 +5,7 @@ static std::string getMax(std::vector<iris> irises)
     std::string name;
     for (int i = 0; i < irises.size(); i++)
     {
-        name = irises[0].getName();
+        name = irises[i].getName();
         if (name == iris::SETOSA)
         {
             count1++;
@@ -35,12 +35,12 @@ static void getCategory(std::vector<iris> classified, iris &unclassified, int k)
 {
     std::vector<iris> irises;
     int minIndex = 0;
-    double min = unclassified.getDistance(irises[0]);
+    double min = unclassified.getDistance(classified[0]);
     for (int j = 0; j < k; j++)
     {
         for (int i = 1; i < classified.size(); i++)
         {
-            double distance = unclassified.getDistance(irises[i]);
+            double distance = unclassified.getDistance(classified[i]);
             if (distance < min)
             {
                 min = distance;
@@ -53,7 +53,7 @@ static void getCategory(std::vector<iris> classified, iris &unclassified, int k)
         classified[minIndex] = classified[classified.size() - 1];
         classified.pop_back();
         minIndex = 0;
-        min = unclassified.getDistance(irises[0]);
+        min = unclassified.getDistance(classified[0]);
     }
     std::string name = getMax(irises);
     unclassified.setName(name);
