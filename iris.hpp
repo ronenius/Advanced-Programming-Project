@@ -3,6 +3,10 @@
 #include <string>
 #include <vector>
 #include <cmath>
+#define FIRST_FEATURE 0
+#define SECOND_FEATURE 1
+#define THIRD_FEATURE 2
+#define FOURTH_FEATURE 3
 class iris
 {
 private:

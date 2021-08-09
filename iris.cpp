@@ -18,8 +18,12 @@ std::vector<double> iris::getProperties()
 }
 double iris::getDistance(iris other)
 {
-    return sqrt((properties[0] - other.getProperties()[0]) * (properties[0] - other.getProperties()[0]) 
-    + (properties[1] - other.getProperties()[1]) * (properties[1] - other.getProperties()[1])
-     + (properties[2] - other.getProperties()[2]) * (properties[2] - other.getProperties()[2]) 
-     + (properties[3] - other.getProperties()[3]) * (properties[3] - other.getProperties()[3]));
+    return sqrt((properties[FIRST_FEATURE] - other.getProperties()[FIRST_FEATURE]) *
+                    (properties[FIRST_FEATURE] - other.getProperties()[FIRST_FEATURE]) +
+                (properties[SECOND_FEATURE] - other.getProperties()[SECOND_FEATURE]) *
+                    (properties[SECOND_FEATURE] - other.getProperties()[SECOND_FEATURE]) +
+                (properties[THIRD_FEATURE] - other.getProperties()[THIRD_FEATURE]) *
+                    (properties[THIRD_FEATURE] - other.getProperties()[THIRD_FEATURE]) +
+                (properties[FOURTH_FEATURE] - other.getProperties()[FOURTH_FEATURE]) *
+                    (properties[FOURTH_FEATURE] - other.getProperties()[FOURTH_FEATURE]));
 }

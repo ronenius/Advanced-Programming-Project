@@ -16,19 +16,19 @@ std::vector<iris> importData(std::string path)
         {
             row.push_back(word);
         }
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < NUMBER_OF_PROPERTIES; i++)
         {
             properties.push_back(stod(row[i]));
         }
-        if (row.size() < 5)
+        if (row.size() < NUMBER_OF_PROPERTIES + 1)
         {
             data.push_back(iris(iris::UNDEFINED, properties));
         }
-        else if (row[4] == "Iris-setosa")
+        else if (row[NUMBER_OF_PROPERTIES] == "Iris-setosa")
         {
             data.push_back(iris(iris::SETOSA, properties));
         }
-        else if (row[4] == "Iris-virginica")
+        else if (row[NUMBER_OF_PROPERTIES] == "Iris-virginica")
         {
             data.push_back(iris(iris::VIRGINICA, properties));
         }
