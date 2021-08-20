@@ -1,14 +1,14 @@
-#include "io.hpp"
+#include "abstractIO.hpp"
 
 /**
  * The function gets a path to a csv file, opens it
- * and copies all the data about the irises from the file
- * to a vector of irises.
+ * and copies all the data about the knnables from the file
+ * to a vector of knnables.
  */
-std::vector<iris> importData(std::string path)
+std::vector<knnable*> abstractIO::importData(std::string path, int numProperties)
 {
     // The new vector of irises.
-    std::vector<iris> data;
+    std::vector<knnable*> data;
     // Creates and opens a new input stream from the file in the path.
     std::fstream fin;
     fin.open(path);
@@ -32,29 +32,18 @@ std::vector<iris> importData(std::string path)
             row.push_back(word);
         }
         // Copies the numerical parameters to the properties vector.
-        for (int i = 0; i < NUMBER_OF_PROPERTIES; i++)
+        for (int i = 0; i < numProperties; i++)
         {
             properties.push_back(stod(row[i]));
         }
-        // If there are less than 5 parameters then there is no name and it's undefined.
-        if (row.size() < NUMBER_OF_PROPERTIES + 1)
+        // If there are less than 'numProperties' parameters then there is no name and it's undefined.
+        if (row.size() < numProperties + 1)
         {
-            data.push_back(iris(iris::UNDEFINED, properties));
+            data.push_back(createInstance("undefined", properties));
         }
-        // Else the name of the iris is setosa then adds it to the irises vector.
-        else if (row[NUMBER_OF_PROPERTIES] == "Iris-setosa")
-        {
-            data.push_back(iris(iris::SETOSA, properties));
-        }
-        // Else the name of the iris is virginica then adds it to the irises vector.
-        else if (row[NUMBER_OF_PROPERTIES] == "Iris-virginica")
-        {
-            data.push_back(iris(iris::VIRGINICA, properties));
-        }
-        // Else the name of the iris is versicolor then adds it to the irises vector.
-        else
-        {
-            data.push_back(iris(iris::VERSICOLOR, properties));
+        // Else adds the name to the irises vector.
+        else {
+            data.push_back(createInstance(row[numProperties], properties));
         }
     }
     // Closes the input stream.
@@ -68,7 +57,7 @@ std::vector<iris> importData(std::string path)
  * opens a csv file in the path and copies the data of the irises
  * from the vector to the file.
  */
-void exportData(std::vector<iris> data, std::string path)
+void exportData(std::vector<knnable*> data, std::string path)
 {
     // Opens a new output stream to a file in the path.
     std::ofstream fout(path);
@@ -76,8 +65,8 @@ void exportData(std::vector<iris> data, std::string path)
     for (int i = 0; i < data.size(); i++)
     {
         // Gets and prints the current iris name to the output file.
-        iris currIris = data[i];
-        fout << "Iris-" << currIris.getName() << std::endl;
+        knnable* currKnnable = data[i];
+        fout << currKnnable->getCategory() << std::endl;
     }
     // Closes the output stream.
     fout.close();

@@ -3,32 +3,26 @@
 #include <string>
 #include <vector>
 #include <cmath>
-#define FIRST_FEATURE 0
-#define SECOND_FEATURE 1
-#define THIRD_FEATURE 2
-#define FOURTH_FEATURE 3
-//manages the flower's details and distances.
-class iris
+#include "knnable.hpp"
+class iris : public knnable
 {
 private:
     std::string name;
     std::vector<double> properties;
-
+    static std::vector<std::string> CATEGORIES;
 public:
-    static std::string SETOSA;
-    static std::string VIRGINICA;
-    static std::string VERSICOLOR;
-    static std::string UNDEFINED;
     //'name' is the category. expected to be one of the 4 possible cattegories.
     //'propeties' is a vector discribing the flower's properties.
     iris(std::string name, std::vector<double> properties);
     //returns the name (category) of the flower.
-    std::string getName();
+    std::string getCategory();
     //sets the name (category) of the flower.
-    void setName(std::string name);
+    void setCategory(std::string name);
     //returns the propeties of the flower.
     std::vector<double> getProperties();
     //returns the distance to the other flower.
-    double getDistance(iris other);
+    double getDistance(knnable* other);
+    //returns the possible categories of the flower, including 'undefined', in the end of the vector.
+    static std::vector<std::string> getPossibleCategories();
 };
 #endif
