@@ -1,7 +1,7 @@
 #include "classifiable.hpp"
 #ifndef KNN_HPP
 #define KNN_HPP
-//An interface of a knn algorithm class.
+//An interface of a classifier algorithm class.
 class classifier
 {
 public:
