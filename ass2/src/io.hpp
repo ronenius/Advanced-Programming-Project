@@ -4,7 +4,7 @@
 #ifndef IO_INTERFACE_HPP
 #define IO_INTERFACE_HPP
 //An interface describing a class that can write and read knnables from csv.
-class ioInterface
+class io
 {
 public:
     /**
@@ -21,4 +21,4 @@ public:
      */
     virtual void exportData(std::vector<classifiable *> data, std::string path) = 0;
 };
-#endif;
+#endif

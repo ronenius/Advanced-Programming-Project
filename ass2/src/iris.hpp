@@ -24,6 +24,6 @@ public:
     //returns the distance to the other flower.
     double getDistance(classifiable *other);
     //returns the possible categories of the flower, including 'undefined', in the end of the vector.
-    static std::vector<std::string> getPossibleCategories();
+    std::vector<std::string> getPossibleCategories();
 };
 #endif

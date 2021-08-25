@@ -1,4 +1,6 @@
 #include "classifiable.hpp"
+#ifndef INSTANCE_BUILDER_HPP
+#define INSTANCE_BUILDER_HPP
 class instanceBuilder
 {
 public:
@@ -6,3 +8,4 @@ public:
     //if the name is 'undefined', it should create an unclassified knnable.
     virtual classifiable *createInstance(std::string name, std::vector<double> properties) = 0;
 };
+#endif

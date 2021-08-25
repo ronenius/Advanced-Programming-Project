@@ -1,6 +1,6 @@
 #include "knnClassifier.hpp"
 //returns the most common category in the vector.
-static std::string getMax(std::vector<classifiable *> classifiables)
+std::string knnClassifier::getMax(std::vector<classifiable *> classifiables)
 {
     //a counter for each category.
     std::vector<std::string> categories = classifiables[0]->getPossibleCategories();
@@ -32,7 +32,7 @@ static std::string getMax(std::vector<classifiable *> classifiables)
     return categories[maxIndex];
 }
 //changes the category of 'unclassified' to the most common category among the k nearest knnables.
-static void getCategory(std::vector<classifiable *> &classified, classifiable *&unclassified, int k)
+void knnClassifier::getCategory(std::vector<classifiable *> &classified, classifiable *unclassified, int k)
 {
     std::vector<classifiable *> knnables;
     //the minimal distance and the index of the knnable with the minimal distance to 'unclassified'.
@@ -75,7 +75,7 @@ std::vector<classifiable *> knnClassifier::getCategories(std::vector<classifiabl
     //calculate the category for every knnable in 'unclassified'.
     for (int i = 0; i < unclassified.size(); i++)
     {
-        getCategory(classified, unclassified[i], k);
+        this->getCategory(classified, unclassified[i], k);
     }
     return unclassified;
 }

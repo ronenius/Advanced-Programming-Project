@@ -11,10 +11,10 @@ public:
     //sets the category of the object.
     virtual void setCategory(std::string s) = 0;
     //returns the distance to another object.
-    virtual double getDistance(classifiable* other) = 0;
+    virtual double getDistance(classifiable *other) = 0;
     //returns the properties of the object.
     virtual std::vector<double> getProperties() = 0;
     //returns all of the possible categories of the object, including 'unclassified'.
-    static std::vector<std::string> getPossibleCategories();
+    virtual std::vector<std::string> getPossibleCategories() = 0;
 };
 #endif
