@@ -1,4 +1,4 @@
-#include "naiveKNN.hpp"
+#include "knnClassifier.hpp"
 //returns the most common category in the vector.
 static std::string getMax(std::vector<classifiable *> classifiables)
 {
@@ -70,7 +70,7 @@ static void getCategory(std::vector<classifiable *> &classified, classifiable *&
 }
 
 //returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
-std::vector<classifiable *> naiveKNN::getCategories(std::vector<classifiable *> classified, std::vector<classifiable *> unclassified, int k)
+std::vector<classifiable *> knnClassifier::getCategories(std::vector<classifiable *> classified, std::vector<classifiable *> unclassified, int k)
 {
     //calculate the category for every knnable in 'unclassified'.
     for (int i = 0; i < unclassified.size(); i++)
