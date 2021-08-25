@@ -14,7 +14,7 @@ std::vector<knnable*> abstractIO::importData(std::string path, int numProperties
     fin.open(path);
     // The vector of the parameters in each row.
     std::vector<std::string> row;
-    // The vector of the properties of each new iris.
+    // The vector of the properties of each new knnable.
     std::vector<double> properties;
     // The current line and word.
     std::string line, word;

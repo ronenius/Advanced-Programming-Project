@@ -67,7 +67,7 @@ static void getCategory(std::vector<knnable*> &classified, knnable* &unclassifie
 //returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
 std::vector<knnable*> naiveKNN::getCategories(std::vector<knnable*> classified, std::vector<knnable*> unclassified, int k)
 {
-    //calculate the species for every flower in 'unclassified'.
+    //calculate the category for every knnable in 'unclassified'.
     for (int i = 0; i < unclassified.size(); i++)
     {
         getCategory(classified, unclassified[i], k);
