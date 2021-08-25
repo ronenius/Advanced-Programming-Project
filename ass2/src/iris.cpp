@@ -18,17 +18,19 @@ std::vector<double> iris::getProperties()
     return properties;
 }
 //returns the distance to the other flower.
-double iris::getDistance(classifiable* other)
+double iris::getDistance(classifiable *other)
 {
     std::vector<double> otherProperties = other->getProperties();
     //get the minimal length of the 2 properties vectors.
     int m = std::min(properties.size(), otherProperties.size()), sum = 0;
     //calculate the distance using euclidean distance.
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < m; i++)
+    {
         sum += (properties[i] - otherProperties[i]) * (properties[i] - otherProperties[i]);
     }
     return sqrt(sum);
 }
-std::vector<std::string> iris::getPossibleCategories() {
+std::vector<std::string> iris::getPossibleCategories()
+{
     return iris::CATEGORIES;
 }
