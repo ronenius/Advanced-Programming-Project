@@ -1,9 +1,9 @@
-#ifndef irishpp
-#define irishpp
 #include <string>
 #include <vector>
 #include <cmath>
 #include "knnable.hpp"
+#ifndef irishpp
+#define irishpp
 class iris : public knnable
 {
 private:
@@ -11,7 +11,7 @@ private:
     std::vector<double> properties;
     static std::vector<std::string> CATEGORIES;
 public:
-    //'name' is the category. expected to be one of the 4 possible cattegories.
+    //'name' is the category. expected to be one of the possible cattegories.
     //'propeties' is a vector discribing the flower's properties.
     iris(std::string name, std::vector<double> properties);
     //returns the name (category) of the flower.

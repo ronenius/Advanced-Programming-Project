@@ -7,7 +7,7 @@
  */
 std::vector<knnable*> abstractIO::importData(std::string path, int numProperties)
 {
-    // The new vector of irises.
+    // The new vector of knnables.
     std::vector<knnable*> data;
     // Creates and opens a new input stream from the file in the path.
     std::fstream fin;
@@ -41,30 +41,30 @@ std::vector<knnable*> abstractIO::importData(std::string path, int numProperties
         {
             data.push_back(createInstance("undefined", properties));
         }
-        // Else adds the name to the irises vector.
+        // Else adds the name to the knnables vector.
         else {
             data.push_back(createInstance(row[numProperties], properties));
         }
     }
     // Closes the input stream.
     fin.close();
-    // Returns the new irises vector.
+    // Returns the new knnables vector.
     return data;
 }
 
 /**
- * The function gets a vector of irises and a path,
- * opens a csv file in the path and copies the data of the irises
+ * The function gets a vector of knnables and a path,
+ * opens a csv file in the path and copies the data of the knnables
  * from the vector to the file.
  */
 void exportData(std::vector<knnable*> data, std::string path)
 {
     // Opens a new output stream to a file in the path.
     std::ofstream fout(path);
-    // Runs through all of the irises in the data.
+    // Runs through all of the knnables in the data.
     for (int i = 0; i < data.size(); i++)
     {
-        // Gets and prints the current iris name to the output file.
+        // Gets and prints the current knnable name to the output file.
         knnable* currKnnable = data[i];
         fout << currKnnable->getCategory() << std::endl;
     }

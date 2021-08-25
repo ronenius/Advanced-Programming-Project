@@ -1,8 +1,8 @@
 #include "naiveKNN.hpp"
-//returns the most common species in the vector.
+//returns the most common category in the vector.
 static std::string getMax(std::vector<knnable*> knnables)
 {
-    //a counter for each species.
+    //a counter for each category.
     std::vector<std::string> categories = knnables[0]->getPossibleCategories();
     std::vector<int> counters(categories.size(), 0);
     std::string name;
@@ -24,14 +24,14 @@ static std::string getMax(std::vector<knnable*> knnables)
             maxIndex = i;
         }
     }
-    //return the species that has the maximum.
+    //return the category that has the maximum.
     return categories[maxIndex];
 }
-//changes the category of 'unclassified' to the most common category among the k nearest flowers.
+//changes the category of 'unclassified' to the most common category among the k nearest knnables.
 static void getCategory(std::vector<knnable*> &classified, knnable* &unclassified, int k)
 {
     std::vector<knnable*> knnables;
-    //the minimal distance and the index of the flower with the minimal distance to 'unclassified'.
+    //the minimal distance and the index of the knnable with the minimal distance to 'unclassified'.
     int minIndex = 0;
     double min = unclassified->getDistance(classified[0]);
     //k times:
@@ -47,7 +47,7 @@ static void getCategory(std::vector<knnable*> &classified, knnable* &unclassifie
                 minIndex = i;
             }
         }
-        //add the minimum to the irises vector.
+        //add the minimum to the knnables vector.
         knnables.push_back(classified[minIndex]);
         //if n==k and we reached the end, break.
         if (classified.size() == 1)
@@ -64,7 +64,7 @@ static void getCategory(std::vector<knnable*> &classified, knnable* &unclassifie
     std::string name = getMax(knnables);
     unclassified->setCategory(name);
 }
-//returns a vector similar to unclassified, but with species. the species are calculated with KNN algorithm.
+//returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
 std::vector<knnable*> naiveKNN::getCategories(std::vector<knnable*> classified, std::vector<knnable*> unclassified, int k)
 {
     //calculate the species for every flower in 'unclassified'.
