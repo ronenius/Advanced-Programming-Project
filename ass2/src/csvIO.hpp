@@ -3,8 +3,8 @@
 #include "instanceBuilder.hpp"
 #include <fstream>
 #include <sstream>
-#ifndef ABSTRACT_IO_HPP
-#define ABSTRACT_IO_HPP
+#ifndef CVS_IO_HPP
+#define CVS_IO_HPP
 
 //the standard implementation to ioInterface.
 class csvIO : public io

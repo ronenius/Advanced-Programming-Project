@@ -2,8 +2,8 @@
 #include <vector>
 #include <cmath>
 #include "classifiable.hpp"
-#ifndef irishpp
-#define irishpp
+#ifndef IRIS_HPP
+#define IRIS_HPP
 class iris : public classifiable
 {
 private:

@@ -1,7 +1,7 @@
 #include <string>
 #include <vector>
-#ifndef KNNABLE_HPP
-#define KNNABLE_HPP
+#ifndef CLASSIFIABLE_HPP
+#define CLASSIFIABLE_HPP
 //An interface describing an object that the knn algorithm can be applied on.
 class classifiable
 {

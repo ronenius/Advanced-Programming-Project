@@ -10,8 +10,8 @@ int main()
      * Imports the data about the classified and unclassified
      * irises from the file to vectors of irises.
      */
-    std::vector<iris> classifiedData = importData("classified.csv");
-    std::vector<iris> unclassifiedData = importData("unclassified.csv");
+    std::vector<iris> classifiedData = importData("C:\\Users\\RONEN\\Desktop\\proj2\\Advanced-Programming-Project\\ass2\\classified.csv");
+    std::vector<iris> unclassifiedData = importData("C:\\Users\\RONEN\\Desktop\\proj2\\Advanced-Programming-Project\\ass2\\unclassified.csv");
 
     /**
      * Runs the classifier on the unclassified irises

@@ -1,6 +1,6 @@
 #include "classifiable.hpp"
-#ifndef KNN_HPP
-#define KNN_HPP
+#ifndef CLASSIFIER_HPP
+#define CLASSIFIER_HPP
 //An interface of a classifier algorithm class.
 class classifier
 {
