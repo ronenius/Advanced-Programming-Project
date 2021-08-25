@@ -1,11 +1,14 @@
-#include "abstractIO.hpp"
+#include "csvIO.hpp"
+
+//Creates an instance of the csvIO with the given builder.
+csvIO::csvIO(instanceBuilder *builder) : builder(builder){};
 
 /**
  * The function gets a path to a csv file, opens it
  * and copies all the data about the knnables from the file
  * to a vector of knnables.
  */
-std::vector<classifiable *> abstractIO::importData(std::string path, int numProperties)
+std::vector<classifiable *> csvIO::importData(std::string path, int numProperties)
 {
     // The new vector of knnables.
     std::vector<classifiable *> data;
@@ -39,12 +42,12 @@ std::vector<classifiable *> abstractIO::importData(std::string path, int numProp
         // If there are less than 'numProperties' parameters then there is no name and it's undefined.
         if (row.size() < numProperties + 1)
         {
-            data.push_back(createInstance("undefined", properties));
+            data.push_back(builder->createInstance("undefined", properties));
         }
         // Else adds the name to the knnables vector.
         else
         {
-            data.push_back(createInstance(row[numProperties], properties));
+            data.push_back(builder->createInstance(row[numProperties], properties));
         }
     }
     // Closes the input stream.
@@ -58,7 +61,7 @@ std::vector<classifiable *> abstractIO::importData(std::string path, int numProp
  * opens a csv file in the path and copies the data of the knnables
  * from the vector to the file.
  */
-void exportData(std::vector<classifiable *> data, std::string path)
+void csvIO::exportData(std::vector<classifiable *> data, std::string path)
 {
     // Opens a new output stream to a file in the path.
     std::ofstream fout(path);
