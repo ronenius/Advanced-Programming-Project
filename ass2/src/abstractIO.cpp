@@ -5,10 +5,10 @@
  * and copies all the data about the knnables from the file
  * to a vector of knnables.
  */
-std::vector<knnable*> abstractIO::importData(std::string path, int numProperties)
+std::vector<classifiable *> abstractIO::importData(std::string path, int numProperties)
 {
     // The new vector of knnables.
-    std::vector<knnable*> data;
+    std::vector<classifiable *> data;
     // Creates and opens a new input stream from the file in the path.
     std::fstream fin;
     fin.open(path);
@@ -42,7 +42,8 @@ std::vector<knnable*> abstractIO::importData(std::string path, int numProperties
             data.push_back(createInstance("undefined", properties));
         }
         // Else adds the name to the knnables vector.
-        else {
+        else
+        {
             data.push_back(createInstance(row[numProperties], properties));
         }
     }
@@ -57,7 +58,7 @@ std::vector<knnable*> abstractIO::importData(std::string path, int numProperties
  * opens a csv file in the path and copies the data of the knnables
  * from the vector to the file.
  */
-void exportData(std::vector<knnable*> data, std::string path)
+void exportData(std::vector<classifiable *> data, std::string path)
 {
     // Opens a new output stream to a file in the path.
     std::ofstream fout(path);
@@ -65,8 +66,8 @@ void exportData(std::vector<knnable*> data, std::string path)
     for (int i = 0; i < data.size(); i++)
     {
         // Gets and prints the current knnable name to the output file.
-        knnable* currKnnable = data[i];
-        fout << currKnnable->getCategory() << std::endl;
+        classifiable *currClassifiable = data[i];
+        fout << currClassifiable->getCategory() << std::endl;
     }
     // Closes the output stream.
     fout.close();

@@ -18,7 +18,7 @@ std::vector<double> iris::getProperties()
     return properties;
 }
 //returns the distance to the other flower.
-double iris::getDistance(knnable* other)
+double iris::getDistance(classifiable* other)
 {
     std::vector<double> otherProperties = other->getProperties();
     //get the minimal length of the 2 properties vectors.

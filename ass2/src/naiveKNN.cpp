@@ -1,25 +1,29 @@
 #include "naiveKNN.hpp"
 //returns the most common category in the vector.
-static std::string getMax(std::vector<knnable*> knnables)
+static std::string getMax(std::vector<classifiable *> classifiables)
 {
     //a counter for each category.
-    std::vector<std::string> categories = knnables[0]->getPossibleCategories();
+    std::vector<std::string> categories = classifiables[0]->getPossibleCategories();
     std::vector<int> counters(categories.size(), 0);
     std::string name;
-    for (int i = 0; i < knnables.size(); i++)
+    for (int i = 0; i < classifiables.size(); i++)
     {
-        name = knnables[i]->getCategory();
+        name = classifiables[i]->getCategory();
         //add 1 to the right counter.
-        for (int j = 0; j < categories.size(); j++) {
-            if (categories[j] == knnables[i]->getCategory()) {
+        for (int j = 0; j < categories.size(); j++)
+        {
+            if (categories[j] == classifiables[i]->getCategory())
+            {
                 counters[j]++;
             }
         }
     }
     //find the maximum of the counters.
     int max = 0, maxIndex = 0;
-    for (int i = 0; i < categories.size(); i++) {
-        if (counters[i] > max) {
+    for (int i = 0; i < categories.size(); i++)
+    {
+        if (counters[i] > max)
+        {
             max = counters[i];
             maxIndex = i;
         }
@@ -28,9 +32,9 @@ static std::string getMax(std::vector<knnable*> knnables)
     return categories[maxIndex];
 }
 //changes the category of 'unclassified' to the most common category among the k nearest knnables.
-static void getCategory(std::vector<knnable*> &classified, knnable* &unclassified, int k)
+static void getCategory(std::vector<classifiable *> &classified, classifiable *&unclassified, int k)
 {
-    std::vector<knnable*> knnables;
+    std::vector<classifiable *> knnables;
     //the minimal distance and the index of the knnable with the minimal distance to 'unclassified'.
     int minIndex = 0;
     double min = unclassified->getDistance(classified[0]);
@@ -64,8 +68,9 @@ static void getCategory(std::vector<knnable*> &classified, knnable* &unclassifie
     std::string name = getMax(knnables);
     unclassified->setCategory(name);
 }
+
 //returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
-std::vector<knnable*> naiveKNN::getCategories(std::vector<knnable*> classified, std::vector<knnable*> unclassified, int k)
+std::vector<classifiable *> naiveKNN::getCategories(std::vector<classifiable *> classified, std::vector<classifiable *> unclassified, int k)
 {
     //calculate the category for every knnable in 'unclassified'.
     for (int i = 0; i < unclassified.size(); i++)

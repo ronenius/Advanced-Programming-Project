@@ -6,6 +6,6 @@ class naiveKNN : public KNN
 {
     public:
         //returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
-        std::vector<knnable*> getCategories(std::vector<knnable*> classified, std::vector<knnable*> unclassified, int k);
+        std::vector<classifiable*> getCategories(std::vector<classifiable*> classified, std::vector<classifiable*> unclassified, int k);
 };
 #endif
