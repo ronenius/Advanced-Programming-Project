@@ -6,7 +6,8 @@
 class classifiable
 {
 public:
-    //returns the category of the object. The classification will use this category to determine the category of the unclassified object.
+    //returns the category of the object.
+    //The classification will use this category to determine the category of the unclassified object.
     virtual std::string getCategory() = 0;
     //sets the category of the object.
     virtual void setCategory(std::string s) = 0;

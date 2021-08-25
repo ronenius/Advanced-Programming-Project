@@ -22,7 +22,8 @@ double iris::getDistance(classifiable *other)
 {
     std::vector<double> otherProperties = other->getProperties();
     //get the minimal length of the 2 properties vectors.
-    int m = std::min(properties.size(), otherProperties.size()), sum = 0;
+    int m = std::min(properties.size(), otherProperties.size());
+    double sum = 0;
     //calculate the distance using euclidean distance.
     for (int i = 0; i < m; i++)
     {
