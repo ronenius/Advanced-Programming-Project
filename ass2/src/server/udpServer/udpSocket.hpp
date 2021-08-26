@@ -5,6 +5,8 @@ private:
     int sock;
 
 public:
+    static const int UDP_PORT;
+
     udpSocket(int sock, stringIO *serverIO, int numProperties, int k,
               classifier *serverClassifier, std::vector<classifiable *> classifiedData);
     void bind();
