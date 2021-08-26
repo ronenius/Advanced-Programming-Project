@@ -3,6 +3,7 @@ class udpSocket : public classifyingServer
 {
 private:
     int sock;
+    struct sockaddr_in from;
 
 public:
     static const int UDP_PORT;
