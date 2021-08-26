@@ -1,10 +1,10 @@
 #include "classifyingServer.hpp"
-class udpServer : public classifyingServer
+class udpSocket : public classifyingServer
 {
 private:
     int sock;
 
 public:
-    udpServer(int sock, stringIO *serverIO, int numProperties, int k,
+    udpSocket(int sock, stringIO *serverIO, int numProperties, int k,
               classifier *serverClassifier, std::vector<classifiable *> classifiedData);
 };
