@@ -1,8 +1,8 @@
 #include "stringIO.hpp"
 #include "classifier.hpp"
-#include "serverSocket.hpp"
+#include "socketInterface.hpp"
 #include "classifiable.hpp"
-class classifyingServer : public serverSocket
+class classifyingServer : public socketInterface
 {
 private:
     stringIO *serverIO;
