@@ -5,4 +5,7 @@ private:
 
 public:
     tcpServer(int sock);
+    void bind();
+    void listen();
+    int accept();
 };

@@ -1,11 +1,11 @@
 #include "socketInterface.hpp"
-class clientSocket : public socketInterface
+class clientTcpSocket : public socketInterface
 {
 private:
     int sock;
 
 public:
-    int createSocket();
+    clientTcpSocket(int sock);
     void send(std::string message);
     std::string receive();
     void closeSocket();
