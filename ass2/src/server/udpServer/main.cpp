@@ -18,5 +18,18 @@ int main()
     std::vector<classifiable *> classifiedData = serverIO.importStringToVector(serverIO.importFileToString("../../../data/classified.csv"), NUM_PROPERTIES);
     udpSocket udpServer(sock, &serverIO, NUM_PROPERTIES, K, &classif, classifiedData);
     udpServer.bind();
-    udpServer.receive();
+    while (true)
+    {
+        std::string message = udpServer.receive();
+        if (message.compare("hello") == 0)
+        {
+            continue;
+        }
+        else
+        {
+            std::string newData = udpServer.classify(message);
+            udpServer.send(newData);
+        }
+    }
+    udpServer.closeSocket();
 }
