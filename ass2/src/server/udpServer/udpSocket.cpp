@@ -25,7 +25,7 @@ void udpSocket::send(std::string message)
     int sent_bytes = sendto(sock, messageArr, len, 0, (struct sockaddr *)&from, sizeof(from));
     if (sent_bytes < 0)
     {
-        perror("error writing to UDP server");
+        perror("error writing to client");
     }
 }
 
@@ -37,7 +37,7 @@ std::string udpSocket::receive()
     int read_bytes = recvfrom(sock, buffer, expected_data_len, 0, (struct sockaddr *)&from, &from_len);
     if (read_bytes < 0)
     {
-        perror("error reading from UDP server");
+        perror("error reading from client");
     }
     return std::string(buffer);
 }
