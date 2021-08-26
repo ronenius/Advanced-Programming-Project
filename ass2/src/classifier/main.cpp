@@ -1,4 +1,4 @@
-#include "csvIO.hpp"
+#include "stringIO.hpp"
 #include "knnClassifier.hpp"
 #include "irisBuilder.hpp"
 
@@ -10,11 +10,12 @@
 int main()
 {
     irisBuilder builder;
-    csvIO irisIO(&builder);
+    stringIO irisIO(&builder);
     knnClassifier classifier;
-    std::vector<classifiable *> classifiedData = irisIO.importData("C:\\Users\\RONEN\\Desktop\\proj2\\Advanced-Programming-Project\\ass2\\classified.csv", 4);
-    std::vector<classifiable *> unclassifiedData = irisIO.importData("C:\\Users\\RONEN\\Desktop\\proj2\\Advanced-Programming-Project\\ass2\\unclassified.csv", 4);
+    std::vector<classifiable *> classifiedData = irisIO.importStringToVector(irisIO.importFileToString("../../classified.csv"), 4);
+    std::cout << irisIO.importFileToString("unclassified.csv");
+    std::vector<classifiable *> unclassifiedData = irisIO.importStringToVector(irisIO.importFileToString("../../unclassified.csv"), 4);
     std::vector<classifiable *> newData = classifier.getCategories(classifiedData, unclassifiedData, K);
-    irisIO.exportData(newData, "C:\\Users\\RONEN\\Desktop\\proj2\\Advanced-Programming-Project\\ass2\\output.csv");
+    irisIO.exportStringToFile("../../output.csv", irisIO.exportVectorToString(newData));
     return 0;
 }
