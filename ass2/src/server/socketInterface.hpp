@@ -5,6 +5,8 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
+#ifndef SOCKET_INTERFACE
+#define SOCKET_INTERFACE
 class socketInterface
 {
 public:
@@ -14,3 +16,4 @@ public:
     virtual std::string receive() = 0;
     virtual void closeSocket();
 };
+#endif

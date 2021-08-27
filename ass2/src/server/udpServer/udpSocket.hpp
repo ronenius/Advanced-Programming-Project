@@ -1,4 +1,6 @@
 #include "classifyingServer.hpp"
+#ifndef UDP_SOCKET_HPP
+#define UDP_SOCKET_HPP
 class udpSocket : public classifyingServer
 {
 private:
@@ -15,3 +17,4 @@ public:
     std::string receive();
     void closeSocket();
 };
+#endif

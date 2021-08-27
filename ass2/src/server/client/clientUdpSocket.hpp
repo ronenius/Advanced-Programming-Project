@@ -1,6 +1,8 @@
 #include "socketInterface.hpp"
 #include "udpSocket.hpp"
 #include "stringIO.hpp"
+#ifndef CLIENT_UDP_SOCKET
+#define CLIENT_UDP_SOCKET
 class clientUdpSocket : public socketInterface
 {
 private:
@@ -16,3 +18,4 @@ public:
     std::string fileToString(std::string path);
     void stringToFile(std::string path, std::string data);
 };
+#endif

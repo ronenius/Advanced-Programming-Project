@@ -1,6 +1,8 @@
 #include "socketInterface.hpp"
 #include "tcpServer.hpp"
 #include "stringIO.hpp"
+#ifndef CLIENT_TCP_SOCKET
+#define CLIENT_TCP_SOCKET
 class clientTcpSocket : public socketInterface
 {
 private:
@@ -16,3 +18,4 @@ public:
     std::string fileToString(std::string path);
     void stringToFile(std::string path, std::string data);
 };
+#endif

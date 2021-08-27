@@ -5,7 +5,8 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 #include <string.h>
-
+#ifndef TCP_SERVER_HPP
+#define TCP_SERVER_HPP
 class tcpServer
 {
 private:
@@ -21,3 +22,4 @@ public:
     int accept();
     void closeSocket();
 };
+#endif

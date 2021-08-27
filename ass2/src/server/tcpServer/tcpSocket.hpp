@@ -1,4 +1,6 @@
 #include "classifyingServer.hpp"
+#ifndef TCP_SOCKET_HPP
+#define TCP_SOCKET_HPP
 class tcpSocket : public classifyingServer
 {
 private:
@@ -11,3 +13,4 @@ public:
     std::string receive();
     void closeSocket();
 };
+#endif
