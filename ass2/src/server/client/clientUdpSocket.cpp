@@ -1,9 +1,12 @@
 #include "clientUdpSocket.hpp"
+
+const char *clientUdpSocket::UDP_IP_ADDRESS = "127.0.0.1";
+
 clientUdpSocket::clientUdpSocket(int sock, stringIO *serverIO) : sock(sock), serverIO(serverIO)
 {
     memset(&from, 0, sizeof(from));
     from.sin_family = AF_INET;
-    from.sin_addr.s_addr = inet_addr(socketInterface::IP_ADDRESS);
+    from.sin_addr.s_addr = inet_addr(UDP_IP_ADDRESS);
     from.sin_port = htons(udpSocket::UDP_PORT);
 }
 

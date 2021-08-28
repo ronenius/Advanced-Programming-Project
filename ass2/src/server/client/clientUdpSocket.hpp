@@ -1,6 +1,6 @@
-#include "socketInterface.hpp"
-#include "udpSocket.hpp"
-#include "stringIO.hpp"
+#include "../socketInterface.hpp"
+#include "../udpServer/udpSocket.hpp"
+#include "../../classifier/stringIO.hpp"
 #ifndef CLIENT_UDP_SOCKET
 #define CLIENT_UDP_SOCKET
 class clientUdpSocket : public socketInterface
@@ -11,6 +11,7 @@ private:
     struct sockaddr_in from;
 
 public:
+    static const char *UDP_IP_ADDRESS;
     clientUdpSocket(int sock, stringIO *serverIO);
     void send(std::string message);
     std::string receive();

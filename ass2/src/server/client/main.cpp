@@ -1,6 +1,7 @@
 #include "clientUdpSocket.hpp"
 #include "clientTcpSocket.hpp"
-#include "irisBuilder.hpp"
+#include "../../classifier/irisBuilder.hpp"
+
 int main()
 {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -21,38 +22,21 @@ int main()
     UDPClient.send("hello");
     std::string message = TCPClient.receive();
     std::cout << message << std::endl;
-    std::string clientInput;
-    std::cin >> clientInput;
-    std::stringstream s(clientInput);
-    std::string word;
-    if (getline(s, word, ' '))
+    std::string protocol, unclassifiedPath, outputPath;
+    std::cin >> protocol >> unclassifiedPath >> outputPath;
+    if (protocol.compare("TCP") == 0)
     {
-        if (word.compare("TCP") == 0)
-        {
-            if (getline(s, word, ' '))
-            {
-                std::string data = TCPClient.fileToString(word);
-                TCPClient.send(data);
-                std::string newData = TCPClient.receive();
-                if (getline(s, word, ' '))
-                {
-                    TCPClient.stringToFile(word, newData);
-                }
-            }
-        }
-        else if (word.compare("UDP") == 0)
-        {
-            if (getline(s, word, ' '))
-            {
-                std::string data = UDPClient.fileToString(word);
-                UDPClient.send(data);
-                std::string newData = UDPClient.receive();
-                if (getline(s, word, ' '))
-                {
-                    UDPClient.stringToFile(word, newData);
-                }
-            }
-        }
+        std::string data = TCPClient.fileToString(unclassifiedPath);
+        TCPClient.send(data);
+        std::string newData = TCPClient.receive();
+        TCPClient.stringToFile(outputPath, newData);
+    }
+    else if (protocol.compare("UDP") == 0)
+    {
+        std::string data = UDPClient.fileToString(unclassifiedPath);
+        UDPClient.send(data);
+        std::string newData = UDPClient.receive();
+        UDPClient.stringToFile(outputPath, newData);
     }
     TCPClient.closeSocket();
     UDPClient.closeSocket();

@@ -1,4 +1,7 @@
 #include "clientTcpSocket.hpp"
+
+const char *clientTcpSocket::TCP_IP_ADDRESS = "127.0.0.1";
+
 clientTcpSocket::clientTcpSocket(int sock, stringIO *serverIO) : sock(sock), serverIO(serverIO){};
 
 void clientTcpSocket::connectToServer()
@@ -6,7 +9,7 @@ void clientTcpSocket::connectToServer()
     struct sockaddr_in sin;
     memset(&sin, 0, sizeof(sin));
     sin.sin_family = AF_INET;
-    sin.sin_addr.s_addr = inet_addr(socketInterface::IP_ADDRESS);
+    sin.sin_addr.s_addr = inet_addr(TCP_IP_ADDRESS);
     sin.sin_port = htons(tcpServer::TCP_PORT);
     if (connect(sock, (struct sockaddr *)&sin, sizeof(sin)) < 0)
     {

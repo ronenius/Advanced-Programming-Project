@@ -11,11 +11,15 @@ std::string stringIO::importFileToString(std::string path)
     //Opens the input stream.
     std::fstream fin;
     fin.open(path);
+    if (getline(fin, line, '\n'))
+    {
+        data = data + line;
+    }
     //Goes through all of the lines in the file.
     while (getline(fin, line, '\n'))
     {
         //Adds the line to the string and new line.
-        data = data + line + '\n';
+        data = data + '\n' + line;
     }
     //Closes the stream.
     fin.close();
@@ -70,10 +74,11 @@ std::string stringIO::exportVectorToString(std::vector<classifiable *> data)
     //Resets the string.
     std::string strData = "";
     //Goes through all of the data.
-    for (int i = 0; i < data.size(); i++)
+    strData = strData + data[0]->getCategory();
+    for (int i = 1; i < data.size(); i++)
     {
         //Adds the current category name to the string and new line.
-        strData = strData + data[i]->getCategory() + '\n';
+        strData = strData + '\n' + data[i]->getCategory();
     }
     //Returns the string.
     return strData;

@@ -1,7 +1,7 @@
-#include "stringIO.hpp"
-#include "classifier.hpp"
+#include "../classifier/stringIO.hpp"
+#include "../classifier/classifier.hpp"
 #include "socketInterface.hpp"
-#include "classifiable.hpp"
+#include "../classifier/classifiable.hpp"
 #ifndef CLASSIFYING_SERVER
 #define CLASSIFYING_SERVER
 class classifyingServer : public socketInterface

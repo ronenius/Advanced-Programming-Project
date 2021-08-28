@@ -1,6 +1,6 @@
 #include "udpSocket.hpp"
-#include "irisBuilder.hpp"
-#include "knnClassifier.hpp"
+#include "../../classifier/irisBuilder.hpp"
+#include "../../classifier/knnClassifier.hpp"
 
 #define NUM_PROPERTIES 4
 #define K 5
@@ -15,7 +15,7 @@ int main()
     irisBuilder builder;
     stringIO serverIO(&builder);
     knnClassifier classif;
-    std::vector<classifiable *> classifiedData = serverIO.importStringToVector(serverIO.importFileToString("../../../data/classified.csv"), NUM_PROPERTIES);
+    std::vector<classifiable *> classifiedData = serverIO.importStringToVector(serverIO.importFileToString("/home/ronenius/proj/Advanced-Programming-Project/ass2/data/classified.csv"), NUM_PROPERTIES);
     udpSocket udpServer(sock, &serverIO, NUM_PROPERTIES, K, &classif, classifiedData);
     udpServer.bind();
     while (true)
@@ -32,4 +32,5 @@ int main()
         }
     }
     udpServer.closeSocket();
+    return 0;
 }
