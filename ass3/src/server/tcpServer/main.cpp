@@ -45,7 +45,7 @@ int main()
         std::string message = tcp.receive();
         //If the client sent a message to UDP then it
         //sends an empty message to the tcp and the tcp closes.
-        if (message.length() <= 7)
+        if (message.length() == 0)
         {
             //Closes the server.
             tcp.closeSocket();

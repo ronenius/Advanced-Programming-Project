@@ -11,7 +11,7 @@ void tcpSocket::send(std::string message)
 {
     //Builds the char array from the string.
     int len = message.length();
-    char messageArr[len + 1];
+    char messageArr[len + 1] = {0};
     strcpy(messageArr, message.c_str());
     //Sends the char array to the client.
     int sent_bytes = ::send(sock, messageArr, len, 0);
@@ -26,7 +26,7 @@ void tcpSocket::send(std::string message)
 std::string tcpSocket::receive()
 {
     //Creates the buffer that will get the message from the client.
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE] = {0};
     int expected_data_len = sizeof(buffer);
     //Receieves the message from the client.
     int read_bytes = recv(sock, buffer, expected_data_len, 0);

@@ -30,7 +30,7 @@ void udpSocket::send(std::string message)
 {
     //Builds the char array from the string.
     int len = message.length();
-    char messageArr[len + 1];
+    char messageArr[len + 1] = {0};
     strcpy(messageArr, message.c_str());
     //Sends the char array to the client.
     int sent_bytes = sendto(sock, messageArr, len, 0, (struct sockaddr *)&from, sizeof(from));
@@ -45,7 +45,7 @@ void udpSocket::send(std::string message)
 std::string udpSocket::receive()
 {
     //Creates the buffer that will get the message from the client.
-    char buffer[BUFFER_SIZE];
+    char buffer[BUFFER_SIZE] = {0};
     int expected_data_len = sizeof(buffer);
     unsigned int from_len = sizeof(struct sockaddr_in);
     //Receieves the message from the client.
