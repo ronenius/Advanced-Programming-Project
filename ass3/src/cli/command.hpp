@@ -11,5 +11,7 @@ private:
 
 public:
     virtual void execute() = 0;
+    std::string getDescription();
+    command(defaultIO* dio, std::string description);
 };
 #endif
