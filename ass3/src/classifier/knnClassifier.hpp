@@ -9,12 +9,12 @@ private:
     std::string getMax(std::vector<classifiable> classifiables);
 
     //changes the category of 'unclassified' to the most common category among the k nearest knnables.
-    void getCategory(std::vector<classifiable> classified, classifiable unclassified, int k);
+    void getCategory(std::vector<classifiable> classified, classifiable unclassified, int k, std::string metric);
 
 public:
     //returns a vector similar to unclassified, but with categories. the categories are calculated with KNN algorithm.
     std::vector<classifiable> getCategories(
         std::vector<classifiable> classified,
-        std::vector<classifiable> unclassified, int k);
+        std::vector<classifiable> unclassified, int k, std::string metric);
 };
 #endif

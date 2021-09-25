@@ -3,7 +3,7 @@
 #include <cmath>
 #ifndef CLASSIFIABLE_HPP
 #define CLASSIFIABLE_HPP
-//An interface describing an object that the knn algorithm can be applied on.
+//An interface describing an classifiable that the knn algorithm can be applied on.
 class classifiable
 {
 private:
@@ -16,20 +16,26 @@ public:
     //'propeties' is a vector discribing the flower's properties.
     classifiable(std::string name, std::vector<double> properties, std::vector<std::string> categories);
 
-    //returns the category of the object.
-    //The classification will use this category to determine the category of the unclassified object.
+    //returns the category of the classifiable.
+    //The classification will use this category to determine the category of the unclassified classifiable.
     std::string getCategory();
 
-    //sets the category of the object.
+    //sets the category of the classifiable.
     void setCategory(std::string s);
 
-    //returns the distance to another object.
-    double getDistance(classifiable other);
+    //returns the Euclidean distance to another classifiable.
+    double getEuclideanDistance(classifiable other);
 
-    //returns the properties of the object.
+    //returns the Manhattan distance to another classifiable.
+    double getManhattanDistance(classifiable other);
+
+    //returns the Chebyshev distance to another classifiable.
+    double getChebyshevDistance(classifiable other);
+
+    //returns the properties of the classifiable.
     std::vector<double> getProperties();
 
-    //returns all of the possible categories of the object, including 'unclassified'.
+    //returns all of the possible categories of the classifiable, including 'unclassified'.
     std::vector<std::string> getPossibleCategories();
 
     //adds a new possible category to the classifiable.

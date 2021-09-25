@@ -14,3 +14,27 @@ void uploadCommand::execute()
     this->test = csvIO.importStringToVector(file);
     this->getIO()->write("Upload complete.");
 }
+
+std::vector<classifiable> uploadCommand::getTrainVector()
+{
+    return this->train;
+}
+
+std::vector<classifiable> uploadCommand::getTestVector()
+{
+    return this->test;
+}
+
+std::vector<classifiable> modifyClassifiedToUnclassified(std::vector<classifiable> classified)
+{
+    for (int i = 0; i < classified.size(); i++)
+    {
+        classified[i].setCategory("undefined");
+    }
+    return classified;
+}
+
+std::vector<classifiable> uploadCommand::getUnclassifiedTestVector()
+{
+    return this->modifyClassifiedToUnclassified(this->test);
+}
