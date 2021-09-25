@@ -88,3 +88,23 @@ std::vector<classifiable> CLI::modifyClassifiedToUnclassified(std::vector<classi
     }
     return classified;
 }
+
+bool CLI::filesUploaded()
+{
+    return isUploadedFiles;
+}
+
+void CLI::setFilesUploadState(bool state)
+{
+    isUploadedFiles = state;
+}
+
+bool CLI::dataClassified()
+{
+    return isClassified;
+}
+
+void CLI::setClassificationState(bool state)
+{
+    isClassified = state;
+}

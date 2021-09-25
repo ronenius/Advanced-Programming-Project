@@ -34,4 +34,8 @@ public:
     std::vector<classifiable> getUnclassified();
     void setUnclassified(std::vector<classifiable> unclassified);
     std::vector<classifiable> modifyClassifiedToUnclassified(std::vector<classifiable> classified);
+    bool filesUploaded();
+    void setFilesUploadState(bool state);
+    bool dataClassified();
+    void setClassificationState(bool state);
 };
