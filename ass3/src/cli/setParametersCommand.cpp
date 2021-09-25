@@ -7,28 +7,26 @@ void setParametersCommand::execute()
 {
     this->getIO()->write("The current KNN parameters are: K = " + std::to_string(this->cli->getK()) +
                          ", distance metric = " + this->cli->getMetric());
-    bool isCorrect = false;
+    bool isKCorrect = false, isMetricCorrect = false;
     int k;
     std::string newMetric;
-    while (!isCorrect)
+    while (!isKCorrect || !isMetricCorrect)
     {
         k = std::stoi(this->getIO()->read());
         newMetric = this->getIO()->read();
         if (k < 1 || k > 10)
-        {
             this->getIO()->write("Invalid value for K");
-        }
         else
+            isKCorrect = true;
+        for (int i = 0; i < this->cli->getPossibleMetrics().size(); i++)
         {
-            isCorrect = true;
+            if (newMetric.compare(this->cli->getPossibleMetrics()[i]) == 0)
+            {
+                isMetricCorrect = true;
+            }
         }
-        if (newMetric.compare(this->cli->getPossibleMetrics()[0]) != 0 &&
-            newMetric.compare(this->cli->getPossibleMetrics()[1]) != 0 &&
-            newMetric.compare(this->cli->getPossibleMetrics()[2]) != 0)
-        {
+        if (!isMetricCorrect)
             this->getIO()->write("Invalid value for distance metric");
-            isCorrect = false;
-        }
     }
     this->cli->setK(k);
     this->cli->setMetric(newMetric);
