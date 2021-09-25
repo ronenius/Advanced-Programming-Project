@@ -4,12 +4,12 @@ printClassificationCommand::printClassificationCommand(defaultIO *dio, std::stri
 
 void printClassificationCommand::printClassificationCommand::execute()
 {
-    std::vector<classifiable> unclassified = cli->getUnclassified();
-    if (unclassified.size() == 0 || unclassified[0].getCategory() == "undefined")
+    if (!cli->dataClassified())
     {
         getIO()->write("Please upload data and classify it before printing.");
         return;
     }
+    std::vector<classifiable> unclassified = cli->getUnclassified();
     std::string message = "";
     for (int i = 0; i < unclassified.size(); i++)
     {

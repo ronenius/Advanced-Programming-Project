@@ -5,6 +5,9 @@ uploadCommand::uploadCommand(defaultIO *dio, std::string description, CLI *cli)
 
 void uploadCommand::execute()
 {
+    this->cli->setTrainer({});
+    this->cli->setTester({});
+    this->cli->setUnclassified({});
     this->getIO()->write("Please upload your local train CSV file.");
     std::string file = this->getIO()->read();
     this->cli->setTrainer(this->cli->getCsvIO().importStringToVector(file));
@@ -14,4 +17,6 @@ void uploadCommand::execute()
     this->cli->setTester(this->cli->getCsvIO().importStringToVector(file));
     this->cli->setUnclassified(this->cli->modifyClassifiedToUnclassified(this->cli->getTester()));
     this->getIO()->write("Upload complete.");
+    this->cli->setFilesUploadState(true);
+    this->cli->setClassificationState(false);
 }

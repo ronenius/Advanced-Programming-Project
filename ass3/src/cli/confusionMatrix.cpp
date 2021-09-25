@@ -4,10 +4,18 @@ confusionMatrix::confusionMatrix(defaultIO *dio, std::string description, CLI *c
 
 void confusionMatrix::execute()
 {
+    if (!cli->filesUploaded())
+    {
+        getIO()->write("Please upload data before calculating the consufion matrix.");
+        return;
+    }
     if (!cli->dataClassified())
     {
-        getIO()->write("Please upload data and classify it before calculating the consufion matrix.");
-        return;
+        this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),
+                                                                             this->cli->getUnclassified(),
+                                                                             this->cli->getK(),
+                                                                             this->cli->getMetric()));
+        this->cli->setClassificationState(true);
     }
     std::vector<classifiable> test = cli->getTester(), classification = cli->getUnclassified();
     std::vector<std::string> categories = test[0].getPossibleCategories();
