@@ -1,6 +1,7 @@
 #include "confusionMatrix.hpp"
 
-confusionMatrix::confusionMatrix(defaultIO *dio, CLI *cli) : command(dio, "display algorithm confusion matrix"), cli(cli){};
+confusionMatrix::confusionMatrix(defaultIO *dio, CLI *cli)
+    : command(dio, "display algorithm confusion matrix"), cli(cli){};
 
 void confusionMatrix::execute()
 {

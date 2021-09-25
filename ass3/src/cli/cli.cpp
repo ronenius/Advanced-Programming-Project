@@ -13,7 +13,7 @@ CLI::CLI(defaultIO *dio, classifier *cliClassifier)
 
 void CLI::start()
 {
-    std::vector<command*> commands(6);
+    std::vector<command *> commands(6);
     uploadCommand u(dio, this);
     setParametersCommand sp(dio, this);
     classifyCommand c(dio, this);
@@ -26,12 +26,14 @@ void CLI::start()
     commands[3] = &pc;
     commands[4] = &sf;
     commands[5] = &cm;
-    std::string menu;
-    for (int i = 0; i < commands.size(); i++) {
-        menu+=(std::to_string(i) + ". " + commands[i]->getDescription() + "\n");
+    std::string menu = "";
+    for (int i = 0; i < commands.size(); i++)
+    {
+        menu += (std::to_string(i) + ". " + commands[i]->getDescription() + "\n");
     }
-    menu+="7. exit";
-    while (1) {
+    menu += "7. exit";
+    while (1)
+    {
         dio->write(menu);
         int i = std::stoi(dio->read());
         if (i == 7)
