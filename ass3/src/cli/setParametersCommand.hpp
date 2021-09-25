@@ -8,7 +8,7 @@ private:
     CLI *cli;
 
 public:
-    setParametersCommand(defaultIO *dio, std::string description, CLI *cli);
+    setParametersCommand(defaultIO *dio, CLI *cli);
     void execute();
 };
 #endif

@@ -2,13 +2,13 @@
 #include "cli.hpp"
 #ifndef PRINT_CLASSIFICATION_COMMAND_HPP
 #define PRINT_CLASSIFICATION_COMMAND_HPP
-class printClassificationCommand : command
+class printClassificationCommand : public command
 {
 private:
     CLI *cli;
 
 public:
-    printClassificationCommand(defaultIO *dio, std::string description, CLI *cli);
+    printClassificationCommand(defaultIO *dio, CLI *cli);
     void execute();
 };
 #endif

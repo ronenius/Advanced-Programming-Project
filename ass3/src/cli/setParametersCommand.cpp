@@ -1,7 +1,7 @@
 #include "setParametersCommand.hpp"
 
-setParametersCommand::setParametersCommand(defaultIO *dio, std::string description, CLI *cli)
-    : command(dio, description), cli(cli){};
+setParametersCommand::setParametersCommand(defaultIO *dio, CLI *cli)
+    : command(dio, "algorithm settings"), cli(cli){};
 
 void setParametersCommand::execute()
 {

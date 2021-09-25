@@ -8,7 +8,7 @@ private:
     CLI *cli;
 
 public:
-    saveFileCommand(defaultIO *dio, std::string description, CLI *cli);
+    saveFileCommand(defaultIO *dio, CLI *cli);
     void execute();
 };
 #endif

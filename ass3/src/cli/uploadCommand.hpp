@@ -8,7 +8,7 @@ private:
     CLI *cli;
 
 public:
-    uploadCommand(defaultIO *dio, std::string description, CLI *cli);
+    uploadCommand(defaultIO *dio, CLI *cli);
     void execute();
 };
 #endif

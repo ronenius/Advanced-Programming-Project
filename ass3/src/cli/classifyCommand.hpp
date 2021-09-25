@@ -8,7 +8,7 @@ private:
     CLI *cli;
 
 public:
-    classifyCommand(defaultIO *dio, std::string description, CLI *cli);
+    classifyCommand(defaultIO *dio, CLI *cli);
     void execute();
 };
 #endif

@@ -1,7 +1,7 @@
 #include "classifyCommand.hpp"
 
-classifyCommand::classifyCommand(defaultIO *dio, std::string description, CLI *cli)
-    : command(dio, description), cli(cli){};
+classifyCommand::classifyCommand(defaultIO *dio, CLI *cli)
+    : command(dio, "classify data"), cli(cli){};
 
 void classifyCommand::execute()
 {

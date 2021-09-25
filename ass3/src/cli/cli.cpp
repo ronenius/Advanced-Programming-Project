@@ -1,5 +1,10 @@
 #include "cli.hpp"
-
+#include "confusionMatrix.hpp"
+#include "printClassificationCommand.hpp"
+#include "setParametersCommand.hpp"
+#include "uploadCommand.hpp"
+#include "classifyCommand.hpp"
+#include "saveFileCommand.hpp"
 std::vector<std::string> CLI::METRICS = {"EUC", "MAN", "CHE"};
 
 CLI::CLI(defaultIO *dio, classifier *cliClassifier)
@@ -8,6 +13,31 @@ CLI::CLI(defaultIO *dio, classifier *cliClassifier)
 
 void CLI::start()
 {
+    std::vector<command*> commands(6);
+    uploadCommand u(dio, this);
+    setParametersCommand sp(dio, this);
+    classifyCommand c(dio, this);
+    printClassificationCommand pc(dio, this);
+    saveFileCommand sf(dio, this);
+    confusionMatrix cm(dio, this);
+    commands[0] = &u;
+    commands[1] = &sp;
+    commands[2] = &c;
+    commands[3] = &pc;
+    commands[4] = &sf;
+    commands[5] = &cm;
+    std::string menu;
+    for (int i = 0; i < commands.size(); i++) {
+        menu+=(std::to_string(i) + ". " + commands[i]->getDescription() + "\n");
+    }
+    menu+="7. exit";
+    while (1) {
+        dio->write(menu);
+        int i = std::stoi(dio->read());
+        if (i == 7)
+            break;
+        commands[i]->execute();
+    }
 }
 
 int CLI::getK()

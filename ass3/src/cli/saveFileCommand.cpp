@@ -1,7 +1,7 @@
 #include "saveFileCommand.hpp"
 
-saveFileCommand::saveFileCommand(defaultIO *dio, std::string description, CLI *cli)
-    : command(dio, description), cli(cli){};
+saveFileCommand::saveFileCommand(defaultIO *dio, CLI *cli)
+    : command(dio, "download results"), cli(cli){};
 
 void saveFileCommand::execute()
 {

@@ -1,7 +1,7 @@
 #include "uploadCommand.hpp"
 
-uploadCommand::uploadCommand(defaultIO *dio, std::string description, CLI *cli)
-    : command(dio, description), cli(cli){};
+uploadCommand::uploadCommand(defaultIO *dio, CLI *cli)
+    : command(dio, "upload an unclassified csv data file"), cli(cli){};
 
 void uploadCommand::execute()
 {

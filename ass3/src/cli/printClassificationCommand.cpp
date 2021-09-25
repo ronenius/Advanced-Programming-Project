@@ -1,6 +1,6 @@
 #include "printClassificationCommand.hpp"
 
-printClassificationCommand::printClassificationCommand(defaultIO *dio, std::string description, CLI *cli) : command(dio, description), cli(cli){};
+printClassificationCommand::printClassificationCommand(defaultIO *dio, CLI *cli) : command(dio, "display results"), cli(cli){};
 
 void printClassificationCommand::printClassificationCommand::execute()
 {
