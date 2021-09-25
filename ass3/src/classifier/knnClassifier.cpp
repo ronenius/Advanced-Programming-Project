@@ -1,15 +1,15 @@
 #include "knnClassifier.hpp"
 
 //returns the most common category in the vector.
-std::string knnClassifier::getMax(std::vector<classifiable *> classifiables)
+std::string knnClassifier::getMax(std::vector<classifiable> classifiables)
 {
     //a counter for each category.
-    std::vector<std::string> categories = classifiables[0]->getPossibleCategories();
+    std::vector<std::string> categories = classifiables[0].getPossibleCategories();
     std::vector<int> counters(categories.size(), 0);
     std::string name;
     for (int i = 0; i < classifiables.size(); i++)
     {
-        name = classifiables[i]->getCategory();
+        name = classifiables[i].getCategory();
         //add 1 to the right counter.
         for (int j = 0; j < categories.size(); j++)
         {
@@ -34,19 +34,19 @@ std::string knnClassifier::getMax(std::vector<classifiable *> classifiables)
 }
 
 //changes the category of 'unclassified' to the most common category among the k nearest knnables.
-void knnClassifier::getCategory(std::vector<classifiable *> classified, classifiable *unclassified, int k)
+void knnClassifier::getCategory(std::vector<classifiable> classified, classifiable unclassified, int k)
 {
-    std::vector<classifiable *> knnables;
+    std::vector<classifiable> knnables;
     //the minimal distance and the index of the knnable with the minimal distance to 'unclassified'.
     int minIndex = 0;
-    double min = unclassified->getDistance(classified[0]);
+    double min = unclassified.getDistance(classified[0]);
     //k times:
     for (int j = 0; j < k; j++)
     {
         //find the minimum.
         for (int i = 1; i < classified.size(); i++)
         {
-            double distance = unclassified->getDistance(classified[i]);
+            double distance = unclassified.getDistance(classified[i]);
             if (distance < min)
             {
                 min = distance;
@@ -59,25 +59,25 @@ void knnClassifier::getCategory(std::vector<classifiable *> classified, classifi
         if (classified.size() == 1)
             break;
         //switch the minimum with the last.
-        classifiable *temp = classified[minIndex];
+        classifiable temp = classified[minIndex];
         classified[minIndex] = classified[classified.size() - 1];
         classified[classified.size() - 1] = temp;
         //remove the minimum.
         classified.pop_back();
         //reset the minimum and its index.
         minIndex = 0;
-        min = unclassified->getDistance(classified[0]);
+        min = unclassified.getDistance(classified[0]);
     }
     //find the most common category.
     std::string name = getMax(knnables);
-    unclassified->setCategory(name);
+    unclassified.setCategory(name);
 }
 
 //returns a vector similar to unclassified, but with categories.
 //The categories are calculated with KNN algorithm.
-std::vector<classifiable *> knnClassifier::getCategories(
-    std::vector<classifiable *> classified,
-    std::vector<classifiable *> unclassified, int k)
+std::vector<classifiable> knnClassifier::getCategories(
+    std::vector<classifiable> classified,
+    std::vector<classifiable> unclassified, int k)
 {
     //calculate the category for every knnable in 'unclassified'.
     for (int i = 0; i < unclassified.size(); i++)

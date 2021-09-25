@@ -9,12 +9,12 @@ class classifiable
 private:
     std::string name;
     std::vector<double> properties;
-    static std::vector<std::string> CATEGORIES;
+    std::vector<std::string> possibleCategories;
 
 public:
     //'name' is the category. expected to be one of the possible categories.
     //'propeties' is a vector discribing the flower's properties.
-    classifiable(std::string name, std::vector<double> properties);
+    classifiable(std::string name, std::vector<double> properties, std::vector<std::string> categories);
 
     //returns the category of the object.
     //The classification will use this category to determine the category of the unclassified object.
@@ -24,7 +24,7 @@ public:
     void setCategory(std::string s);
 
     //returns the distance to another object.
-    double getDistance(classifiable *other);
+    double getDistance(classifiable other);
 
     //returns the properties of the object.
     std::vector<double> getProperties();

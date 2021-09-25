@@ -1,7 +1,8 @@
 #include "classifiable.hpp"
 
 //initializes using the data and does nothing else.
-classifiable::classifiable(std::string name, std::vector<double> properties) : name(name), properties(properties){};
+classifiable::classifiable(std::string name, std::vector<double> properties, std::vector<std::string> categories)
+    : name(name), properties(properties), possibleCategories(categories){};
 
 //returns the name (category).
 std::string classifiable::getCategory()
@@ -22,9 +23,9 @@ std::vector<double> classifiable::getProperties()
 }
 
 //returns the distance to the other flower.
-double classifiable::getDistance(classifiable *other)
+double classifiable::getDistance(classifiable other)
 {
-    std::vector<double> otherProperties = other->getProperties();
+    std::vector<double> otherProperties = other.getProperties();
     //get the minimal length of the 2 properties vectors.
     int m = std::min(properties.size(), otherProperties.size());
     double sum = 0;
@@ -39,11 +40,11 @@ double classifiable::getDistance(classifiable *other)
 //returns the possible categories of the flower, including 'undefined', in the end of the vector.
 std::vector<std::string> classifiable::getPossibleCategories()
 {
-    return classifiable::CATEGORIES;
+    return classifiable::possibleCategories;
 }
 
 //adds a new possible category to the classifiable.
 void classifiable::addPossibleCategory(std::string category)
 {
-    classifiable::CATEGORIES.push_back(category);
+    classifiable::possibleCategories.push_back(category);
 }

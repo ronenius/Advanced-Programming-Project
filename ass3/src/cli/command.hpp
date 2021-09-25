@@ -10,8 +10,9 @@ private:
     defaultIO *dio;
 
 public:
-    virtual void execute() = 0;
+    command(defaultIO *dio, std::string description);
     std::string getDescription();
-    command(defaultIO* dio, std::string description);
+    defaultIO *getIO();
+    virtual void execute() = 0;
 };
 #endif

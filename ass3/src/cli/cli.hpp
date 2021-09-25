@@ -1,6 +1,6 @@
 #include <vector>
 #include "command.hpp"
-#include "../classifier/classifiable.hpp"
+#include "../classifier/stringIO.hpp"
 class CLI
 {
 private:

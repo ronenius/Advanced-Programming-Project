@@ -1,5 +1,13 @@
 #include "command.hpp"
-command::command(defaultIO* dio, std::string description) : dio(dio), description(description) { }
-std::string command::getDescription() {
+
+command::command(defaultIO *dio, std::string description) : dio(dio), description(description){};
+
+std::string command::getDescription()
+{
     return description;
+}
+
+defaultIO *command::getIO()
+{
+    return dio;
 }
