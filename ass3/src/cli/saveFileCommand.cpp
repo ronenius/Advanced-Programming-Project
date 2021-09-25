@@ -7,7 +7,7 @@ void saveFileCommand::execute()
 {
     if (!this->cli->dataClassified())
     {
-        this->getIO()->write("Please upload data and classify it before printing.");
+        this->getIO()->write("Please upload data and classify it before downloading.\n");
         return;
     }
     std::vector<classifiable> classified = this->cli->getUnclassified();

@@ -7,7 +7,7 @@ void confusionMatrix::execute()
 {
     if (!cli->filesUploaded())
     {
-        getIO()->write("Please upload data before calculating the consufion matrix.");
+        getIO()->write("Please upload data before calculating the consufion matrix.\n");
         return;
     }
     if (!cli->dataClassified())
@@ -43,6 +43,6 @@ void confusionMatrix::execute()
         message += "\n";
     }
     message += ("The current KNN parameters are: K = " + std::to_string(this->cli->getK()) +
-                ", distance metric = " + this->cli->getMetric());
+                ", distance metric = " + this->cli->getMetric() + "\n");
     getIO()->write(message);
 }

@@ -7,11 +7,10 @@
 class standardIO : public defaultIO
 {
 private:
-    bool is1, is5;
-    CLI *cli;
+    bool is1, is12, is5;
 
 public:
-    standardIO(CLI* cli);
+    standardIO();
     std::string read();
     void write(std::string output);
 };

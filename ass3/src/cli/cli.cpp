@@ -5,6 +5,7 @@
 #include "uploadCommand.hpp"
 #include "classifyCommand.hpp"
 #include "saveFileCommand.hpp"
+
 std::vector<std::string> CLI::METRICS = {"EUC", "MAN", "CHE"};
 
 CLI::CLI(defaultIO *dio, classifier *cliClassifier)
@@ -29,16 +30,16 @@ void CLI::start()
     std::string menu = "";
     for (int i = 0; i < commands.size(); i++)
     {
-        menu += (std::to_string(i) + ". " + commands[i]->getDescription() + "\n");
+        menu += (std::to_string(i + 1) + ". " + commands[i]->getDescription() + "\n");
     }
-    menu += "7. exit";
+    menu += "7. exit\n";
     while (1)
     {
         dio->write(menu);
         int i = std::stoi(dio->read());
         if (i == 7)
             break;
-        commands[i]->execute();
+        commands[i - 1]->execute();
     }
 }
 
@@ -107,9 +108,9 @@ std::vector<classifiable> CLI::getUnclassified()
     return unClassified;
 }
 
-void CLI::setUnclassified(std::vector<classifiable> unclassified)
+void CLI::setUnclassified(std::vector<classifiable> unclassify)
 {
-    this->unClassified = unClassified;
+    this->unClassified = unclassify;
 }
 
 std::vector<classifiable> CLI::modifyClassifiedToUnclassified(std::vector<classifiable> classified)

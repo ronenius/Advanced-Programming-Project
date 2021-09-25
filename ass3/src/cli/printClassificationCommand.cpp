@@ -7,7 +7,7 @@ void printClassificationCommand::printClassificationCommand::execute()
 {
     if (!cli->dataClassified())
     {
-        getIO()->write("Please upload data and classify it before printing.");
+        getIO()->write("Please upload data and classify it before printing.\n");
         return;
     }
     std::vector<classifiable> unclassified = cli->getUnclassified();
@@ -16,6 +16,6 @@ void printClassificationCommand::printClassificationCommand::execute()
     {
         message += (std::to_string(i + 1) + "\t" + unclassified[i].getCategory() + "\n");
     }
-    message += "Done.";
+    message += "Done.\n";
     getIO()->write(message);
 }
