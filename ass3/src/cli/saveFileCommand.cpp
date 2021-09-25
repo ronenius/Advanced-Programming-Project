@@ -14,7 +14,7 @@ void saveFileCommand::execute()
     std::string message = "";
     for (int i = 0; i < classified.size(); i++)
     {
-        message += (std::to_string(i) + "\t" + classified[i].getCategory() + "\n");
+        message += (std::to_string(i + 1) + "\t" + classified[i].getCategory() + "\n");
     }
     this->getIO()->write(message);
 }

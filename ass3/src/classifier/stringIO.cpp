@@ -24,7 +24,7 @@ std::string stringIO::importFileToString(std::string path)
     return data;
 }
 
-int stringIO::getNumOfProperties(std::string& data)
+int stringIO::getNumOfProperties(std::string &data)
 {
     std::stringstream s(data);
     std::string line;
@@ -40,23 +40,28 @@ int stringIO::getNumOfProperties(std::string& data)
     return counter;
 }
 
-std::vector<std::string> stringIO::getPossibleCategories(std::string& data)
+std::vector<std::string> stringIO::getPossibleCategories(std::string &data)
 {
     int numProperties = getNumOfProperties(data);
     std::string line, word;
     std::stringstream s1(data);
     std::vector<std::string> categories;
-    while (getline(s1,line,'\n')) {
+    while (getline(s1, line, '\n'))
+    {
         std::stringstream s2(line);
-        while (getline(s2,word,','));
+        while (getline(s2, word, ','))
+            ;
         bool flag = true;
-        for (int i = 0; i < categories.size(); i++) {
-            if (categories[i] == word) {
+        for (int i = 0; i < categories.size(); i++)
+        {
+            if (categories[i] == word)
+            {
                 flag = false;
                 break;
             }
         }
-        if (flag) {
+        if (flag)
+        {
             categories.push_back(word);
         }
     }

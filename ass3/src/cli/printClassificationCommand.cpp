@@ -14,7 +14,7 @@ void printClassificationCommand::printClassificationCommand::execute()
     std::string message = "";
     for (int i = 0; i < unclassified.size(); i++)
     {
-        message += (std::to_string(i) + "\t" + unclassified[i].getCategory() + "\n");
+        message += (std::to_string(i + 1) + "\t" + unclassified[i].getCategory() + "\n");
     }
     message += "Done.";
     getIO()->write(message);
