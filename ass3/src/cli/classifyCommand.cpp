@@ -1,19 +1,11 @@
 #include "classifyCommand.hpp"
 
-classifyCommand::classifyCommand(defaultIO *dio, std::string description, classifier *cliClassifier,
-                                 int k, std::string metric, std::vector<classifiable> train,
-                                 std::vector<classifiable> unClassified)
-    : command(dio, description), cliClassifier(cliClassifier),
-      k(k), metric(metric), train(train), unClassified(unClassified){};
+classifyCommand::classifyCommand(defaultIO *dio, std::string description, CLI* cli)
+    : command(dio, description), cli(cli){};
 
 void classifyCommand::execute()
 {
-    this->classified =
-        cliClassifier->getCategories(this->train, this->unClassified, this->k, this->metric);
+    this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),
+                                                                         this->cli->getUnclassified(), this->cli->getK(), this->cli->getMetric()));
     this->getIO()->write("classifying data complete");
-}
-
-std::vector<classifiable> classifyCommand::getClassifiedVector()
-{
-    return this->classified;
 }

@@ -1,16 +1,12 @@
 #include "command.hpp"
-#include <vector>
+#include "cli.hpp"
 
 class setParametersCommand : public command
 {
 private:
-    int K;
-    std::string metric;
-    static std::vector<std::string> METRICS;
+    CLI *cli;
 
 public:
-    setParametersCommand(defaultIO *dio, std::string description);
+    setParametersCommand(defaultIO *dio, std::string description, CLI *cli);
     void execute();
-    int getK();
-    std::string getMetric();
 };

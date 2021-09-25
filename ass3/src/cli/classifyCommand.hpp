@@ -1,22 +1,14 @@
 #include "command.hpp"
-#include "../classifier/knnClassifier.hpp"
+#include "cli.hpp"
 #ifndef CLASSIFY_COMMAND_HPP
 #define CLASSIFY_COMMAND_HPP
 class classifyCommand : public command
 {
 private:
-    classifier *cliClassifier;
-    int k;
-    std::string metric;
-    std::vector<classifiable> train;
-    std::vector<classifiable> unClassified;
-    std::vector<classifiable> classified;
+    CLI *cli;
 
 public:
-    classifyCommand(defaultIO *dio, std::string description, classifier *cliClassifier,
-                    int k, std::string metric, std::vector<classifiable> train,
-                    std::vector<classifiable> unClassified);
+    classifyCommand(defaultIO *dio, std::string description, CLI *cli);
     void execute();
-    std::vector<classifiable> getClassifiedVector();
 };
 #endif

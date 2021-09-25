@@ -1,13 +1,12 @@
 #include "setParametersCommand.hpp"
 
-std::vector<std::string> setParametersCommand::METRICS = {"EUC", "MAN", "CHE"};
-
-setParametersCommand::setParametersCommand(defaultIO *dio, std::string description)
-    : command(dio, description), K(5), metric("EUC"){};
+setParametersCommand::setParametersCommand(defaultIO *dio, std::string description, CLI *cli)
+    : command(dio, description), cli(cli){};
 
 void setParametersCommand::execute()
 {
-    this->getIO()->write("The current KNN parameters are: K = " + std::to_string(this->K) + ", distance metric = " + this->metric);
+    this->getIO()->write("The current KNN parameters are: K = " + std::to_string(this->cli->getK()) +
+                         ", distance metric = " + this->cli->getMetric());
     bool isCorrect = false;
     int k;
     std::string newMetric;
@@ -23,22 +22,14 @@ void setParametersCommand::execute()
         {
             isCorrect = true;
         }
-        if (newMetric.compare(METRICS[0]) != 0 && newMetric.compare(METRICS[1]) != 0 && newMetric.compare(METRICS[2]) != 0)
+        if (newMetric.compare(this->cli->getPossibleMetrics()[0]) != 0 &&
+            newMetric.compare(this->cli->getPossibleMetrics()[1]) != 0 &&
+            newMetric.compare(this->cli->getPossibleMetrics()[2]) != 0)
         {
             this->getIO()->write("Invalid value for distance metric");
             isCorrect = false;
         }
     }
-    this->K = k;
-    this->metric = newMetric;
-}
-
-int setParametersCommand::getK()
-{
-    return this->K;
-}
-
-std::string setParametersCommand::getMetric()
-{
-    return this->metric;
+    this->cli->setK(k);
+    this->cli->setMetric(newMetric);
 }
