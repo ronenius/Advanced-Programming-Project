@@ -9,9 +9,9 @@
 //to files and backwards
 class stringIO
 {
-    int getNumOfProperties(std::string data);
+    int getNumOfProperties(std::string& data);
 
-    std::vector<std::string> getPossibleCategories(std::string data);
+    std::vector<std::string> getPossibleCategories(std::string& data);
 
 public:
     //Copies a file to a string.
