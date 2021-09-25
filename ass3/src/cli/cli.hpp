@@ -2,6 +2,8 @@
 #include "command.hpp"
 #include "../classifier/stringIO.hpp"
 #include "../classifier/knnClassifier.hpp"
+#ifndef CLI_HPP
+#define CLI_HPP
 class CLI
 {
 private:
@@ -39,3 +41,4 @@ public:
     bool dataClassified();
     void setClassificationState(bool state);
 };
+#endif
