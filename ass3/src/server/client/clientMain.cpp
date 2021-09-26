@@ -36,12 +36,23 @@ int main()
             std::string path;
             getline(std::cin, path);
             input = TCPClient.fileToString(path);
+            std::cout << "";
             TCPClient.send(input);
+            message = TCPClient.receive();
+            std::cout << message;
             message = TCPClient.receive();
             std::cout << message;
             getline(std::cin, path);
             input = TCPClient.fileToString(path);
+            std::cout << "";
             TCPClient.send(input);
+            message = TCPClient.receive();
+            std::cout << message;
+            while (input.size() != 0)
+                getline(std::cin, input);
+            TCPClient.send("\n");
+            message = TCPClient.receive();
+            std::cout << message;
         }
         else if (input == "2")
         {
@@ -50,22 +61,23 @@ int main()
             do
             {
                 getline(std::cin, input);
-                TCPClient.send(input);
+                if (input.size() == 0)
+                    TCPClient.send("\n");
+                else
+                    TCPClient.send(input);
                 message = TCPClient.receive();
                 std::cout << message;
             } while (message != menuString);
         }
-        else if (input == "3")
+        else if (input == "3" || input == "4" || input == "6")
         {
             message = TCPClient.receive();
             std::cout << message;
-        }
-        else if (input == "4" || input == "6")
-        {
+            while (input.size() != 0)
+                getline(std::cin, input);
+            TCPClient.send("\n");
             message = TCPClient.receive();
             std::cout << message;
-            getline(std::cin, input);
-            TCPClient.send(input);
         }
         else if (input == "5")
         {
@@ -76,13 +88,17 @@ int main()
                 std::string path;
                 getline(std::cin, path);
                 std::thread th(runDownload, TCPClient, path + "/results.txt", message);
+                th.detach();
             }
             else
             {
                 std::cout << message;
             }
-            getline(std::cin, input);
-            TCPClient.send(input);
+            while (input.size() != 0)
+                getline(std::cin, input);
+            TCPClient.send("\n");
+            message = TCPClient.receive();
+            std::cout << message;
         }
         else if (input == "7")
         {

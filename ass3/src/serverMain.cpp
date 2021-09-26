@@ -35,5 +35,6 @@ int main()
         //Accepts and gets the socket of the client.
         int clientSock = TCPServer.accept();
         std::thread th(run, clientSock);
+        th.detach();
     }
 }

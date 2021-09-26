@@ -19,4 +19,6 @@ void uploadCommand::execute()
     this->getIO()->write("Upload complete.\n");
     this->cli->setFilesUploadState(true);
     this->cli->setClassificationState(false);
+    while (getIO()->read() != "\n")
+        ;
 }

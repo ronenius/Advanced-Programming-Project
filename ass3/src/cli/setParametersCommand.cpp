@@ -15,14 +15,23 @@ void setParametersCommand::execute()
         isKCorrect = false;
         isMetricCorrect = false;
         std::string input = this->getIO()->read(), errorMessage = "";
-        if (input.size() == 0)
+        if (input == "\n")
         {
             return;
         }
         int index = input.find(' ');
-        k = std::stoi(input);
+        bool flag = true;
+        if (index < 0)
+            flag = false;
+        for (int i = 0; i < index; i++)
+        {
+            if (!isdigit(input[i]))
+                flag = false;
+        }
+        if (flag)
+            k = std::stoi(input);
         newMetric = input.substr(index + 1);
-        if (k < 1 || k > 10)
+        if (!flag || k < 1 || k > 10)
             errorMessage = "Invalid value for K\n";
         else
             isKCorrect = true;

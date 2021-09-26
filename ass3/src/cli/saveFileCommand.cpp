@@ -8,7 +8,7 @@ void saveFileCommand::execute()
     if (!this->cli->dataClassified())
     {
         this->getIO()->write("Please upload data and classify it before downloading.\n");
-        while (getIO()->read().size() != 0)
+        while (getIO()->read() != "\n")
             ;
         return;
     }
@@ -19,6 +19,6 @@ void saveFileCommand::execute()
         message += (std::to_string(i + 1) + "\t" + classified[i].getCategory() + "\n");
     }
     this->getIO()->write(message);
-    while (getIO()->read().size() != 0)
+    while (getIO()->read() != "\n")
         ;
 }

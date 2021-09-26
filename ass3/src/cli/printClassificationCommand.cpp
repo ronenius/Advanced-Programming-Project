@@ -8,7 +8,7 @@ void printClassificationCommand::execute()
     if (!cli->dataClassified())
     {
         getIO()->write("Please upload data and classify it before printing.\n");
-        while (getIO()->read().size() != 0)
+        while (getIO()->read() != "\n")
             ;
         return;
     }
@@ -20,6 +20,6 @@ void printClassificationCommand::execute()
     }
     message += "Done.\n";
     getIO()->write(message);
-    while (getIO()->read().size() != 0)
+    while (getIO()->read() != "\n")
         ;
 }

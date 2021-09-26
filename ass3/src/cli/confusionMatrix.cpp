@@ -8,7 +8,7 @@ void confusionMatrix::execute()
     if (!cli->filesUploaded())
     {
         getIO()->write("Please upload data before calculating the confusion matrix.\n");
-        while (getIO()->read().size() != 0)
+        while (getIO()->read() != "\n")
             ;
         return;
     }
@@ -44,6 +44,6 @@ void confusionMatrix::execute()
     message += ("The current KNN parameters are: K = " + std::to_string(this->cli->getK()) +
                 ", distance metric = " + this->cli->getMetric() + "\n");
     getIO()->write(message);
-    while (getIO()->read().size() != 0)
+    while (getIO()->read() != "\n")
         ;
 }

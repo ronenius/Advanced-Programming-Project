@@ -8,6 +8,8 @@ void classifyCommand::execute()
     if (!cli->filesUploaded())
     {
         getIO()->write("Please upload data before classifying.\n");
+        while (getIO()->read() != "\n")
+            ;
         return;
     }
     this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),
@@ -16,4 +18,6 @@ void classifyCommand::execute()
                                                                          this->cli->getMetric()));
     this->cli->setClassificationState(true);
     this->getIO()->write("classifying data complete\n");
+    while (getIO()->read() != "\n")
+        ;
 }
