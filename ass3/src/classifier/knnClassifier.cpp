@@ -34,7 +34,7 @@ std::string knnClassifier::getMax(std::vector<classifiable> classifiables)
 }
 
 //changes the category of 'unclassified' to the most common category among the k nearest knnables.
-void knnClassifier::getCategory(std::vector<classifiable> classified, classifiable unclassified, int k, std::string metric)
+void knnClassifier::getCategory(std::vector<classifiable> classified, classifiable &unclassified, int k, std::string metric)
 {
     std::vector<classifiable> knnables;
     //the minimal distance and the index of the knnable with the minimal distance to 'unclassified'.

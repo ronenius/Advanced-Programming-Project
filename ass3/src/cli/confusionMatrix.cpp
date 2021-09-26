@@ -10,14 +10,11 @@ void confusionMatrix::execute()
         getIO()->write("Please upload data before calculating the consufion matrix.\n");
         return;
     }
-    if (!cli->dataClassified())
-    {
-        this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),
-                                                                             this->cli->getUnclassified(),
-                                                                             this->cli->getK(),
-                                                                             this->cli->getMetric()));
-        this->cli->setClassificationState(true);
-    }
+    this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),
+                                                                         this->cli->getUnclassified(),
+                                                                         this->cli->getK(),
+                                                                         this->cli->getMetric()));
+    this->cli->setClassificationState(true);
     std::vector<classifiable> test = cli->getTester(), classification = cli->getUnclassified();
     std::vector<std::string> categories = test[0].getPossibleCategories();
     std::string message;
@@ -38,11 +35,13 @@ void confusionMatrix::execute()
                     }
                 }
             }
-            message += (std::to_string(countI / countI * 100) + "\t");
+            message += (std::to_string(countJ / countI * 100) + "\t");
         }
         message += "\n";
     }
     message += ("The current KNN parameters are: K = " + std::to_string(this->cli->getK()) +
                 ", distance metric = " + this->cli->getMetric() + "\n");
     getIO()->write(message);
+    while (getIO()->read().size() != 0)
+        ;
 }

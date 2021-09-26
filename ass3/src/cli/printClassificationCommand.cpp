@@ -18,4 +18,6 @@ void printClassificationCommand::printClassificationCommand::execute()
     }
     message += "Done.\n";
     getIO()->write(message);
+    while (getIO()->read().size() != 0)
+        ;
 }
