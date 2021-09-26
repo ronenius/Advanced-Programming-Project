@@ -104,6 +104,10 @@ int main()
         {
             break;
         }
+        else
+        {
+            std::cout << "Wrong option" << std::endl;
+        }
         getline(std::cin, input);
     }
     TCPClient.closeSocket();
