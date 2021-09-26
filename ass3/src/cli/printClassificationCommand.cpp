@@ -3,7 +3,7 @@
 printClassificationCommand::printClassificationCommand(defaultIO *dio, CLI *cli)
     : command(dio, "display results"), cli(cli){};
 
-void printClassificationCommand::printClassificationCommand::execute()
+void printClassificationCommand::execute()
 {
     if (!cli->dataClassified())
     {
