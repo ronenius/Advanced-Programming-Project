@@ -1,8 +1,8 @@
-#include "classifier/knnClassifier.hpp"
-#include "cli/cli.hpp"
-#include "io/socketIO.hpp"
-#include "server/tcpServer/tcpServer.hpp"
-#include "server/tcpServer/tcpSocket.hpp"
+#include "../../classifier/knnClassifier.hpp"
+#include "../../cli/cli.hpp"
+#include "../../io/socketIO.hpp"
+#include "tcpServer.hpp"
+#include "tcpSocket.hpp"
 #include <thread>
 
 void run(int clientSock)
