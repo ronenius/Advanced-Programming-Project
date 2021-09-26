@@ -12,6 +12,7 @@ void run(int clientSock)
     knnClassifier classif;
     CLI cli(&sio, &classif);
     cli.start();
+    tcp.closeSocket();
 }
 
 int main()
