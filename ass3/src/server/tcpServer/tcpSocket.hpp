@@ -1,7 +1,7 @@
-#include "../classifyingServer.hpp"
+#include "../socketInterface.hpp"
 #ifndef TCP_SOCKET_HPP
 #define TCP_SOCKET_HPP
-class tcpSocket : public classifyingServer
+class tcpSocket : public socketInterface
 {
 private:
     //The socket number of the socket.
@@ -9,8 +9,7 @@ private:
 
 public:
     //The constructor of the tcp socket.
-    tcpSocket(int sock, stringIO *serverIO, int numProperties, int k,
-              classifier *serverClassifier, std::vector<classifiable *> classifiedData);
+    tcpSocket(int sock);
 
     //The function sends a string message from the client
     //or the server to the other side, respectively.

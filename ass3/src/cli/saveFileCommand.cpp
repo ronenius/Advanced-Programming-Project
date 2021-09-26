@@ -8,6 +8,8 @@ void saveFileCommand::execute()
     if (!this->cli->dataClassified())
     {
         this->getIO()->write("Please upload data and classify it before downloading.\n");
+        while (getIO()->read().size() != 0)
+            ;
         return;
     }
     std::vector<classifiable> classified = this->cli->getUnclassified();

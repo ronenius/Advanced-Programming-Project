@@ -8,6 +8,8 @@ void printClassificationCommand::execute()
     if (!cli->dataClassified())
     {
         getIO()->write("Please upload data and classify it before printing.\n");
+        while (getIO()->read().size() != 0)
+            ;
         return;
     }
     std::vector<classifiable> unclassified = cli->getUnclassified();

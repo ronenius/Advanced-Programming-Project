@@ -1,9 +1,7 @@
 #include "tcpSocket.hpp"
 
 //The constructor of the tcp socket.
-tcpSocket::tcpSocket(int sock, stringIO *serverIO, int numProperties, int k,
-                     classifier *serverClassifier, std::vector<classifiable *> classifiedData)
-    : sock(sock), classifyingServer(serverIO, numProperties, k, serverClassifier, classifiedData){};
+tcpSocket::tcpSocket(int sock) : sock(sock){};
 
 //The function sends a string message from the client
 //or the server to the other side, respectively.

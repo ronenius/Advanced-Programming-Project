@@ -7,7 +7,9 @@ void confusionMatrix::execute()
 {
     if (!cli->filesUploaded())
     {
-        getIO()->write("Please upload data before calculating the consufion matrix.\n");
+        getIO()->write("Please upload data before calculating the confusion matrix.\n");
+        while (getIO()->read().size() != 0)
+            ;
         return;
     }
     this->cli->setUnclassified(this->cli->getClassifier()->getCategories(this->cli->getTrainer(),

@@ -14,7 +14,7 @@ void setParametersCommand::execute()
     {
         isKCorrect = false;
         isMetricCorrect = false;
-        std::string input = this->getIO()->read();
+        std::string input = this->getIO()->read(), errorMessage = "";
         if (input.size() == 0)
         {
             return;
@@ -23,7 +23,7 @@ void setParametersCommand::execute()
         k = std::stoi(input);
         newMetric = input.substr(index + 1);
         if (k < 1 || k > 10)
-            this->getIO()->write("Invalid value for K\n");
+            errorMessage = "Invalid value for K\n";
         else
             isKCorrect = true;
         for (int i = 0; i < this->cli->getPossibleMetrics().size(); i++)
@@ -34,7 +34,9 @@ void setParametersCommand::execute()
             }
         }
         if (!isMetricCorrect)
-            this->getIO()->write("Invalid value for distance metric\n");
+            errorMessage += "Invalid value for distance metric\n";
+        if (!isKCorrect || !isMetricCorrect)
+            this->getIO()->write(errorMessage);
     }
     this->cli->setK(k);
     this->cli->setMetric(newMetric);
