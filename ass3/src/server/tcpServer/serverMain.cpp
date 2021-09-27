@@ -5,6 +5,7 @@
 #include "tcpSocket.hpp"
 #include <thread>
 #include <chrono>
+#include <fcntl.h>
 #define TIMEOUT_MILLISECONDS 30000
 
 void run(int clientSock, int& threadsCounter)
@@ -27,6 +28,11 @@ int main()
     {
         perror("error creating socket");
     }
+    int status = fcntl(sock, F_SETFL, fcntl(sock, F_GETFL, 0) | O_NONBLOCK);
+    if (status < 0)
+    {
+        perror("error making non blocking socket");
+    }
     //Creates the server object.
     tcpServer TCPServer(sock);
     //Binds the socket to the port.
@@ -39,6 +45,7 @@ int main()
     {
         //Listens for any clients that want to connect.
         TCPServer.listen();
+        int clientSock = -1;
         //Accepts and gets the socket of the client.
         int clientSock = TCPServer.accept();
         if (clientSock != -1) {
