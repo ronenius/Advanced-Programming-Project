@@ -4,6 +4,7 @@
 #include "tcpServer.hpp"
 #include "tcpSocket.hpp"
 #include <thread>
+#include <fcntl.h>
 
 void run(int clientSock)
 {
@@ -23,6 +24,11 @@ int main()
     {
         perror("error creating socket");
     }
+    int status = fcntl(sock, F_SETFL, fcntl(sock, F_GETFL, 0) | O_NONBLOCK);
+    if (status < 0)
+    {
+        perror("error making non blocking socket");
+    }
     //Creates the server object.
     tcpServer TCPServer(sock);
     //Binds the socket to the port.
@@ -32,8 +38,12 @@ int main()
     {
         //Listens for any clients that want to connect.
         TCPServer.listen();
+        int clientSock = -1;
         //Accepts and gets the socket of the client.
-        int clientSock = TCPServer.accept();
+        while (clientSock == -1)
+        {
+            clientSock = TCPServer.accept();
+        }
         std::thread th(run, clientSock);
         th.detach();
     }

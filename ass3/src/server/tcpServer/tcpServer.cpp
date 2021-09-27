@@ -43,10 +43,6 @@ int tcpServer::accept()
     unsigned int addr_len = sizeof(client_sin);
     //Gets the sockaddr and the socket number of the client socket.
     int client_sock = ::accept(sock, (struct sockaddr *)&client_sin, &addr_len);
-    if (client_sock < 0)
-    {
-        perror("error accepting client");
-    }
     //Returns the socket number for future use.
     return client_sock;
 }
