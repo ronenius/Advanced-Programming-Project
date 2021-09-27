@@ -33,19 +33,20 @@ int main()
         {
             message = TCPClient.receive();
             std::cout << message;
-            std::string path;
-            getline(std::cin, path);
-            input = TCPClient.fileToString(path);
+            std::string path1;
+            getline(std::cin, path1);
+            std::string file1 = TCPClient.fileToString(path1);
             std::cout << "";
-            TCPClient.send(input);
+            TCPClient.send(file1);
             message = TCPClient.receive();
             std::cout << message;
             message = TCPClient.receive();
             std::cout << message;
-            getline(std::cin, path);
-            input = TCPClient.fileToString(path);
+            std::string path2;
+            getline(std::cin, path2);
+            std::string file2 = TCPClient.fileToString(path2);
             std::cout << "";
-            TCPClient.send(input);
+            TCPClient.send(file2);
             message = TCPClient.receive();
             std::cout << message;
             while (input.size() != 0)
