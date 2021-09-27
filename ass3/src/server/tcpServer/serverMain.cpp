@@ -4,15 +4,19 @@
 #include "tcpServer.hpp"
 #include "tcpSocket.hpp"
 #include <thread>
+#include <chrono>
+#define TIMEOUT_MILLISECONDS 30000
 
-void run(int clientSock)
+void run(int clientSock, int& threadsCounter)
 {
+    threadsCounter++;
     tcpSocket tcp(clientSock);
     socketIO sio(&tcp);
     knnClassifier classif;
     CLI cli(&sio, &classif);
     cli.start();
     tcp.closeSocket();
+    threadsCounter--;
 }
 
 int main()
@@ -27,14 +31,23 @@ int main()
     tcpServer TCPServer(sock);
     //Binds the socket to the port.
     TCPServer.bind();
+    int threadsCounter = 0;
     //Runs the server forever.
-    while (true)
+    auto start = chrono::high_resolution_clock::now();
+    int milliseconds = 0;
+    while (milliseconds < )
     {
         //Listens for any clients that want to connect.
         TCPServer.listen();
         //Accepts and gets the socket of the client.
         int clientSock = TCPServer.accept();
-        std::thread th(run, clientSock);
-        th.detach();
+        if (clientSock != -1) {
+            start = chorno::high_resolution_clock::now();
+            std::thread th(run, clientSock, threadsCounter);
+            th.detach();
+        }
+        auto now = chrono::high_resolution_clock::now();
+        auto time = now - start;
+        milliseconds = time / chrono::milliseconds(1);
     }
 }
