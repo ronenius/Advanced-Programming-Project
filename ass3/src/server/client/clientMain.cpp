@@ -36,16 +36,12 @@ int main()
             std::string path1;
             getline(std::cin, path1);
             std::string file1 = TCPClient.fileToString(path1);
-            std::cout << "";
             TCPClient.send(file1);
-            message = TCPClient.receive();
-            std::cout << message;
             message = TCPClient.receive();
             std::cout << message;
             std::string path2;
             getline(std::cin, path2);
             std::string file2 = TCPClient.fileToString(path2);
-            std::cout << "";
             TCPClient.send(file2);
             message = TCPClient.receive();
             std::cout << message;
