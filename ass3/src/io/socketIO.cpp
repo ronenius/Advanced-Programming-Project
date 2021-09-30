@@ -1,6 +1,6 @@
 #include "socketIO.hpp"
 
-socketIO::socketIO(tcpSocket *server) : server(server){};
+socketIO::socketIO(socketInterface *server) : server(server){};
 
 std::string socketIO::read()
 {

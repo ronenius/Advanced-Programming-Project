@@ -5,10 +5,10 @@
 class socketIO : public defaultIO
 {
 private:
-    tcpSocket *server;
+    socketInterface *server;
 
 public:
-    socketIO(tcpSocket *server);
+    socketIO(socketInterface *server);
     std::string read();
     void write(std::string output);
 };
