@@ -1,5 +1,6 @@
 #include "command.hpp"
 #include "cli.hpp"
+#include <thread>
 #ifndef SAVE_FILE_COMMAND_HPP
 #define SAVE_FILE_COMMAND_HPP
 class saveFileCommand : public command
