@@ -15,6 +15,7 @@ void setParametersCommand::execute()
         isKCorrect = false;
         isMetricCorrect = false;
         std::string input = this->getIO()->read(), errorMessage = "";
+        //if there are no changes
         if (input == "\n")
         {
             return;
@@ -23,18 +24,23 @@ void setParametersCommand::execute()
         bool flag = true;
         if (index < 0)
             flag = false;
+        //check if k is a number.
         for (int i = 0; i < index; i++)
         {
             if (!isdigit(input[i]))
                 flag = false;
         }
+        //get k
         if (flag)
             k = std::stoi(input);
+        //get the given metric
         newMetric = input.substr(index + 1);
+        //if k is not valid
         if (!flag || k < 1 || k > 10)
             errorMessage = "Invalid value for K\n";
         else
             isKCorrect = true;
+        //check if the metric is valid.
         for (int i = 0; i < this->cli->getPossibleMetrics().size(); i++)
         {
             if (newMetric.compare(this->cli->getPossibleMetrics()[i]) == 0)

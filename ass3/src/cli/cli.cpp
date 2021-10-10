@@ -83,6 +83,7 @@ std::vector<std::string> CLI::getPossibleMetrics()
     return CLI::METRICS;
 }
 
+//returns the trainer file (as classifiables vector).
 std::vector<classifiable> CLI::getTrainer()
 {
     return train;
@@ -93,6 +94,7 @@ void CLI::setTrainer(std::vector<classifiable> trainer)
     train = trainer;
 }
 
+//returns the test file (as classifiable vector).
 std::vector<classifiable> CLI::getTester()
 {
     return test;
@@ -103,6 +105,7 @@ void CLI::setTester(std::vector<classifiable> tester)
     test = tester;
 }
 
+//returns the test file but without the classification.
 std::vector<classifiable> CLI::getUnclassified()
 {
     return unClassified;

@@ -2,6 +2,7 @@
 #include "cli.hpp"
 #ifndef PRINT_CLASSIFICATION_COMMAND_HPP
 #define PRINT_CLASSIFICATION_COMMAND_HPP
+//a command that prints the classification.
 class printClassificationCommand : public command
 {
 private:
@@ -9,6 +10,7 @@ private:
 
 public:
     printClassificationCommand(defaultIO *dio, CLI *cli);
+    //will send the classification if the files were classified.
     void execute();
 };
 #endif
