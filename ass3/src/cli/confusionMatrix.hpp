@@ -11,7 +11,8 @@ private:
 public:
     confusionMatrix(defaultIO *dio, CLI *cli);
     //checks if the files are uploaded and classified. if they aren't classified, it will classify them,
-    //and if they are classified, will calculate the confusion matrix according to the classification in the test file provided.
+    //and if they are classified, 
+    //will calculate the confusion matrix according to the classification in the test file provided.
     void execute();
 };
 #endif

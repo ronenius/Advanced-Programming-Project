@@ -7,7 +7,9 @@
 class standardIO : public defaultIO
 {
 public:
+    //Reads the input from the user.
     std::string read();
+    //Writes the output for the user.
     void write(std::string output);
 };
 #endif

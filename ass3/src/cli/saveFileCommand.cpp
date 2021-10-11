@@ -26,7 +26,8 @@ void saveFileCommand::execute()
             ;
         return;
     }
-    //opens a new thread for sending the information. The cli will be able to send the menu and get new messages before its done.
+    //opens a new thread for sending the information.
+    //The cli will be able to send the menu and get new messages before its done.
     std::thread th(sendResults, this->cli->getUnclassified(), this->getIO());
     th.detach();
     //wait for "\n".

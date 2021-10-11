@@ -12,7 +12,8 @@ private:
 
 public:
     saveFileCommand(defaultIO *dio, CLI *cli);
-    //sends the data for classifing in a different thread, so that the cli will be able to keep running while its sending.
+    //sends the data for classifing in a different thread,
+    //so that the cli will be able to keep running while its sending.
     void execute();
 };
 #endif
