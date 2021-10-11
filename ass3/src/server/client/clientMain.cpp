@@ -2,9 +2,17 @@
 #include "../../classifier/stringIO.hpp"
 #include <thread>
 
-void runDownload(clientTcpSocket TCPClient, std::string path, std::string message)
+void saveClassifications(clientTcpSocket TCPClient, std::string message, std::string path)
 {
     TCPClient.stringToFile(path, message);
+}
+
+void sendEnter(clientTcpSocket TCPClient)
+{
+    std::string input = "1";
+    while (input.size() != 0)
+        getline(std::cin, input);
+    TCPClient.send("\n");
 }
 
 //Builds the client side and runs it.
@@ -78,24 +86,33 @@ int main()
         }
         else if (input == "5")
         {
-            message = TCPClient.receive();
-            if (message != "Please upload data and classify it before downloading.\n")
+            std::cout << "Enter a path to download results" << std::endl;
+            std::string path;
+            getline(std::cin, path);
+            std::thread enterThread(sendEnter, TCPClient);
+            enterThread.detach();
+            std::string message = TCPClient.receive();
+            if (message == menuString)
             {
-                std::cout << "Enter a path to download results" << std::endl;
-                std::string path;
-                getline(std::cin, path);
-                std::thread th(runDownload, TCPClient, path + "/results.txt", message);
-                th.detach();
+                std::cout << message;
+                message = TCPClient.receive();
+                std::thread saveThread(saveClassifications, TCPClient, message, path + "/results.txt");
+                saveThread.detach();
             }
             else
             {
+                if (message != "Please upload data and classify it before downloading.\n")
+                {
+                    std::thread saveThread(saveClassifications, TCPClient, message, path + "/results.txt");
+                    saveThread.detach();
+                }
+                else
+                {
+                    std::cout << message;
+                }
+                message = TCPClient.receive();
                 std::cout << message;
             }
-            while (input.size() != 0)
-                getline(std::cin, input);
-            TCPClient.send("\n");
-            message = TCPClient.receive();
-            std::cout << message;
         }
         else if (input == "7")
         {
