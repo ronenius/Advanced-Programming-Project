@@ -96,8 +96,15 @@ int main()
             {
                 std::cout << message;
                 message = TCPClient.receive();
-                std::thread saveThread(saveClassifications, TCPClient, message, path + "/results.txt");
-                saveThread.detach();
+                if (message != "Please upload data and classify it before downloading.\n")
+                {
+                    std::thread saveThread(saveClassifications, TCPClient, message, path + "/results.txt");
+                    saveThread.detach();
+                }
+                else
+                {
+                    std::cout << message;
+                }
             }
             else
             {

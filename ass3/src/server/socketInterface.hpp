@@ -11,8 +11,8 @@
 class socketInterface
 {
 public:
-    //The max size for a sent message is 32768.
-    static const int BUFFER_SIZE = 32768;
+    //The max size for a sent message is 8192.
+    static const int BUFFER_SIZE = 8192;
 
     //The function sends a string message from the client
     //or the server to the other side, respectively.
